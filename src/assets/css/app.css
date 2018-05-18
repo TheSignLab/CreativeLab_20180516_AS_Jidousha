@@ -331,6 +331,12 @@ table {
 @font-face {
   font-weight: normal;
   font-style: normal;
+  font-family: 'font-bold';
+  src: local('font-bold'), url("../fonts/MullerBold.otf") format("opentype");
+}
+@font-face {
+  font-weight: normal;
+  font-style: normal;
   font-family: 'font-medium';
   src: local('font-medium'), url("../fonts/MullerMedium.otf") format("opentype");
 }
@@ -340,8 +346,35 @@ table {
   font-family: 'font-ultra';
   src: local('font-ultra'), url("../fonts/MullerUltra.otf") format("opentype");
 }
+@font-face {
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'font-futura-italic';
+  src: local('font-futura-italic'), url("../fonts/FuturaOblique.woff2") format('woff2');
+}
+@font-face {
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'font-futura-bold-italic';
+  src: local('font-futura-bold-italic'), url("../fonts/FuturaBoldOblique.woff2") format('woff2');
+}
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'font-regular';
+  src: local('font-regular'), url("../fonts/MullerRegular.otf") format("opentype");
+}
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'font-thin';
+  src: local('font-thin'), url("../fonts/MullerThin.otf") format("opentype");
+}
 body,
 html {
   background-color: white;
   color: black;
+  width: 100vw !important;
+  height: auto;
+  overflow-x: hidden;
 }

@@ -1,8 +1,10 @@
 <template>
 <div class="container info">
     <div class="wrapper">
-        
-        <h1>SU AUTO EN LAS MEJORES MANOS!</h1>
+        <h1>
+            <span class="f-bold">SU AUTO</span> EN LAS 
+            <span class="f-bold">MEJORES</span> MANOS!
+        </h1>
         <p>Autostudio le trae el sistema más avanzado de reparación
         exprés de su auto. Contacte uno de nuestros vehículos
         y descubra como está de regreso a la calle en tiempo récord.</p>
@@ -61,10 +63,14 @@
             display: block;
             font-family: "font-medium";
             h1 {
+                font-family: "font-futura-italic";
                 text-align: left;
                 width: 70%;
                 font-size: 1em;
                 padding: 1em 0em;
+                .f-bold{
+                  font-family: "font-futura-bold-italic";
+                }
             }
             p {
                 text-align: left;
