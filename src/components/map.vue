@@ -143,8 +143,10 @@
         mounted: function() {
             console.log("map: ", google.maps);
             this.icon = {
-                url: "https://image.ibb.co/edwvoy/carrogps.png",
-                scaledSize: new google.maps.Size(50, 50),
+                /*url: "https://image.ibb.co/edwvoy/carrogps.png",*/
+                url: "https://image.ibb.co/mTKi0o/gps.png",
+                scaledSize: new google.maps.Size(30, 40),
+                /*scaledSize: new google.maps.Size(50, 50),*/
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(0, 0)
             };
@@ -158,7 +160,7 @@
                     lng: -84.087502
                 },
                 scrollwheel: false,
-                zoom: 12,
+                zoom: 11,
                 styles: MapStyleJson
             });
             this.marker = new google.maps.Marker({

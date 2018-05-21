@@ -1,8 +1,8 @@
 <template>
 <form>
     <h2>
-        <span class="f-bold">{{ $t("form.request",lang) }}</span>
-        <span >{{ $t("form.service",lang) }}</span>
+        <span >{{ $t("form.request",lang) }}</span>
+        <span class="f-bold">{{ $t("form.service",lang) }}</span>
     </h2>
     <!-- Nombres -->
     <label>{{ $t("form.name",lang) }}</label>
@@ -14,9 +14,12 @@
     <label>{{ $t("form.email",lang) }}</label>
     <input>
     <!-- Mensaje-->
-    <textarea placeholder="Mensaje"></textarea>
+    <p>
+        *{{ $t("form.message",lang) }}
+        </p>
     
-    <input type="submit" value="ENVIAR">
+    <input type="submit" value="ENVIAR"  v-bind:class="{ active: lang == 'es' }">
+    <input type="submit" value="SEND"  v-bind:class="{ active: lang != 'es' }">
 </form>
 </template>
 
@@ -60,9 +63,9 @@
 
 
         h2 {
-            padding-top: 2vh;
+            padding-top: 5vh;
             padding-bottom: 3vh;
-            font-size: 2vh;
+            font-size: 6vw;
             font-family: "font-futura-italic";
             span.f-bold {
                 font-family: "font-futura-bold-italic";
@@ -90,21 +93,20 @@
             color: darken(@color-white, 0%);
             border-bottom: 1px solid darken(@color-red, 10%);
         }
-        textarea {
+        p {
             width: 70%;
-            background-color: @color-white;
-            color: @color-gray;
-            height: 7vh;
+            color: #680216;
             padding: 2.5%;
             box-sizing: border-box;
             margin: 5% auto;
-            text-align: center;
+            font-size: 1em;
+            text-align: left;
             resize: none;
         }
         input[type="submit"] {
             font-family: 'font-medium';
             background-color: darken(@color-red, 10%);
-            border-radius: 0.85vw;
+            border-radius: 10vw;
             width: fit-content;
             margin: 5%;
             padding: 5% 5%;
@@ -112,10 +114,16 @@
         input[type="submit"]:after {
             content: "dfhdh";
             background-color: blue;
-            border-radius: 25px;
+            border-radius: 50px;
             height: 60px;
             position: absolute;
             width: 60px;
+        }
+        input[type="submit"] {
+            display: none;
+        }
+        input[type="submit"].active {
+            display: block;
         }
     }
 
@@ -123,9 +131,8 @@
 
     @media only screen and (min-width: 768px) {
         form {
-            width: 35vh;
-            max-width: 300px;
-            height: fit-content;
+            width: 30vh;
+            height: 37vh;
             background-color: @color-red;
             color: @color-white;
             font-family: "font-light";
@@ -134,14 +141,14 @@
             .flex-display(flex);
             .flex-direction(column);
             .flex-wrap(wrap);
-            .justify-content(flex-start);
+            .justify-content(space-between);
             .align-content(center);
             .align-items(center);
 
 
             h2 {
-                padding-top: 2vh;
-                padding-bottom: 3vh;
+                padding-top: 3vh;
+                padding-bottom: 2vh;
                 font-size: 2vh;
                 font-family: "font-futura-italic";
                 span.f-bold {
@@ -164,38 +171,32 @@
             }
             input {
                 width: 50%;
-                margin: 2% auto;
+                margin: 0px auto;
                 font-family: 'font-thin';
                 font-size: 0.8em;
                 color: darken(@color-white, 0%);
                 border-bottom: 1px solid darken(@color-red, 10%);
             }
-            textarea {
-                width: 70%;
-                background-color: @color-white;
-                color: @color-gray;
+            p {
+                width: 90%;
                 height: 7vh;
-                padding: 2.5%;
+                padding: 0px;
+                padding-top: 5%;
+                -webkit-box-sizing: border-box;
                 box-sizing: border-box;
-                margin: 5% auto;
-                text-align: center;
+                margin: 0% auto;
+                text-align: left;
                 resize: none;
+                font-size: 0.85em;
             }
             input[type="submit"] {
                 font-family: 'font-medium';
                 background-color: darken(@color-red, 10%);
                 border-radius: 0.85vw;
                 width: fit-content;
-                margin: 5%;
+                margin: 0;
+                margin-bottom: 10%;
                 padding: 5% 5%;
-            }
-            input[type="submit"]:after {
-                content: "dfhdh";
-                background-color: blue;
-                border-radius: 25px;
-                height: 60px;
-                position: absolute;
-                width: 60px;
             }
         }
     }

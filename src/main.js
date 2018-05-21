@@ -23,12 +23,15 @@ const messages = {
             phone: 'Phone',
             email: 'Email'
         },
+        socialImg : '"../assets/img/social-txt.svg"',
         form:{
-            request : 'request',
-            service : 'service',
-            name:'name',
-            phone :'phone',
-            email:'email'
+            request : 'SEE',
+            service : 'MORE',
+            name:'Name',
+            phone :'Phone',
+            email:'Email',
+            send:'SEND',
+            message : "Register your data and participate for a dent repair raffle for your car.",
         }
     },
     es: {
@@ -36,12 +39,15 @@ const messages = {
             phone: 'Teléfono',
             email: 'Correo'
         },
+        socialImg : '"../assets/img/social-txt.svg"',
         form:{
-            request : 'solicitar',
-            service : 'servicio',
-            name:'nombre',
-            phone :'teléfono',
-            email:'correo'
+            request : 'CONOCER',
+            service : 'MÁS',
+            name:'Nombre',
+            phone :'Teléfono',
+            email:'Correo',
+            send:'ENVIAR',
+            message : 'Registre sus datos y participe por el sorteo de un arreglo de su camanance',
         }
         
     }

@@ -62,9 +62,11 @@
 
     footer {
         width: 100vw;
+        box-sizing: border-box;
+        padding: 2.5vh;
         font-family: 'font-light';
         background-image: url(../assets/img/Bg_Texture.png);
-        background-size: auto 150vw;
+        background-size: auto 250vw;
         background-position: center center;
         background-repeat: repeat;
         .flex-display(flex);
@@ -82,11 +84,11 @@
             left: 0px;
         }
         .col {
-            width: 50vw;
+            width: 45vw;
             height: auto;
             box-sizing: border-box;
             padding: 5vw;
-            font-size: 2.25vw;
+            font-size: 2vw;
             span.title {
                 font-family: 'font-medium';
                 text-align: left;
@@ -113,6 +115,7 @@
 
         .col.phoneAndsocial {
             height: auto;
+            margin-left: 0%;
             .flex-display(flex);
             .flex-direction(column);
             .flex-wrap(wrap);
@@ -144,7 +147,9 @@
                 display: block;
                 img {
                     display: inline-block;
-                    width: 8vw;
+                    margin-left: 0.25vw;
+                    margin-right: 0.25vw;
+                    width: 7.5vw;
                 }
             }
         }
@@ -168,20 +173,20 @@
             .align-content(flex-start);
             .align-items(flex-start);
             img.footer-float-logo {
-                width: 20vw;
+                width: 15vw;
                 display: block;
                 position: absolute;
-                bottom: 5vh;
+                bottom: 1em;
                 margin: 0px;
 
-                left: calc(50vw - 10vw);
+                left: calc(50vw - 7.5vw);
             }
             .col {
                 width: 20%;
                 height: 100%;
                 box-sizing: border-box;
                 padding: 1.5%;
-                font-size: 1.25vh;
+                font-size: 1vh;
                 span.title {
                     font-family: 'font-medium';
                     text-align: left;
@@ -193,7 +198,7 @@
                     width: 2vw;
                     border: 0;
                     height: 1px;
-                    margin: 0.5em 0px;
+                    margin: 1.5em 0px;
                     padding: 0px;
                     background: @color-yellow ;
                 }
@@ -207,7 +212,7 @@
             }
 
             .col.phoneAndsocial {
-
+                margin-left: 5%;
                 .flex-display(flex);
                 .flex-direction(column);
                 .flex-wrap(wrap);
@@ -239,7 +244,9 @@
                     display: block;
                     img {
                         display: inline-block;
-                        width: 2vw;
+                        width: 1.5vw;
+                        margin-left: 0.25vw;
+                        margin-right: 0.25vw;
                     }
                 }
             }

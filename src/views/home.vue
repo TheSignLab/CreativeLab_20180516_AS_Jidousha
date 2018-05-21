@@ -4,13 +4,15 @@
         <div class="wrapper">
             <div class="col">
             <!-- <as-info-section></as-info-section> -->
-            </div>
-            <div class="col">
-            <as-map-section></as-map-section>
+               <as-social-section v-bind:lang="appLang"></as-social-section>
             </div>
             <div class="float">
                 <as-form v-bind:lang="appLang"></as-form>
             </div>
+            <div class="col">
+            <as-map-section></as-map-section>
+            </div>
+            
         </div>
         <as-footer class="footer" v-bind:lang="appLang"></as-footer>
     </div>
@@ -25,18 +27,19 @@
     import NavbarComponent from '../components/navbar.vue'
     import FooterComponent from '../components/footer.vue'
     import MapComponent from '../components/map.vue'
+    import SocialComponent from '../components/social.vue'
     import FormComponent from '../components/form.vue'
     export default {
         name: 'Home',
         data() {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                appLang : 'es'
+                appLang: 'es'
             }
         },
-        methods:{
+        methods: {
             setLanguage: function(event) {
-               this.appLang =  event;
+                this.appLang = event;
                 console.log("Home updated Language to : " + this.appLang)
             }
         },
@@ -44,6 +47,7 @@
             'as-navbar': NavbarComponent,
             'as-map-section': MapComponent,
             'as-footer': FooterComponent,
+            'as-social-section': SocialComponent,
             'as-form': FormComponent
         }
     }
@@ -76,8 +80,16 @@
                 width: 100%;
                 height: 80vh;
             }
-            
+
+            .col:first-child {
+                order: 1;
+            }
+            .col:last-child {
+                order: 3;
+            }
+
             .float {
+                order:2;
                 display: block;
                 position: relative;
                 top: 0px;
@@ -119,9 +131,17 @@
                     width: 50%;
                     height: 80vh;
                 }
-               
-                .float {
 
+                .col:first-child {
+                    order: 1;
+                }
+                .col:last-child {
+                    order: 2;
+                }
+
+                .float {
+                    order: 3;
+                    z-index: 500;
                     position: absolute;
                     top: calc(50vh - 25%);
                 }

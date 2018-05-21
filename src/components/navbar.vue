@@ -33,7 +33,8 @@
             setLang: function(Language) {
                 this.menuIsOpen = !this.menuIsOpen;
                 this.Language = Language;
-                this.$emit('updateLanguage',Language)
+                this.$emit('updateLanguage',Language);
+             
 
             }
         }
@@ -181,7 +182,7 @@
                 display: block;
                 position: absolute;
                 z-index: 200;
-                width: 5vw;
+                width: fit-content;
                 background-color: white;
                 padding: calc(1vh + 0.5vw);
                 padding-top: 3vh;
