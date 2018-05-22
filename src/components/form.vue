@@ -49,6 +49,7 @@
         width: 100vw;
         max-width: 100vw;
         height: fit-content;
+
         background-color: @color-red;
         color: @color-white;
         font-family: "font-light";
@@ -132,7 +133,8 @@
     @media only screen and (min-width: 768px) {
         form {
             width: 30vh;
-            height: 37vh;
+            height: fit-content;
+            min-height: 290px;
             background-color: @color-red;
             color: @color-white;
             font-family: "font-light";
@@ -187,7 +189,7 @@
                 margin: 0% auto;
                 text-align: left;
                 resize: none;
-                font-size: 0.85em;
+                font-size: 0.75em;
             }
             input[type="submit"] {
                 font-family: 'font-medium';
