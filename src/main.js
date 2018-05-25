@@ -4,6 +4,8 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import App from './App'
 import router from './router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import './assets/css/app.less'
 Vue.config.productionTip = false
 
@@ -16,6 +18,8 @@ Vue.config.productionTip = false
 
 
 Vue.use(VueI18n)
+Vue.use(VueAxios, axios)
+
 
 const messages = {
     en: {

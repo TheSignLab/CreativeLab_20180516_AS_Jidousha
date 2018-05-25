@@ -28,7 +28,7 @@
             </span>
             <br>
             <div class="socialIcons">
-                <a href="" class="facebook">
+                <a href="https://www.facebook.com/AutoStudio-1790467927713072/?ref=bookmarks" class="facebook">
                     <img src="../assets/img/face.png" class="default">
                     <img src="../assets/img/face_hover.png" class="hover">
                 </a>

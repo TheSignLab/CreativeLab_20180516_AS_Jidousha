@@ -137,11 +137,11 @@
 
 
 
-    var imgPath = "http://dev.autostudio-cr.com/static/img/event";
+    var imgPath = "http://autostudio-cr.com/static/img/event";
     var contentArray = [{
         id: 0,
         lat: 9.935166,
-        lon:-84.091349,
+        lon: -84.091349,
         place: "Paseo Colón - Calle 34",
         message: "A Paola le saltó una piedra rompiendo su parabrisas."
 
@@ -202,7 +202,7 @@
                 disableDoubleClickZoom: true
             });
             this.icon = {
-                url: "http://dev.autostudio-cr.com/static/img/gps.png",
+                url: "http://autostudio-cr.com/static/img/gps.png",
                 scaledSize: new google.maps.Size(30, 40),
                 /*scaledSize: new google.maps.Size(50, 50),*/
                 origin: new google.maps.Point(0, 0),
@@ -221,16 +221,14 @@
 
 
             const self = this;
-
+ 
             this.intervalid1 = setInterval(function() {
-                console.log("self.kRandom : " +self.kRandom)
-                var _kRandom =  Math.floor(Math.random() * 4);
-                if(self.kRandom == _kRandom){
-                    _kRandom = Math.max(0, Math.min(_kRandom + 1,4));
+                console.log("self.kRandom : " + self.kRandom)
+                var _kRandom = Math.floor(Math.random() * 4);
+                if (self.kRandom == _kRandom) {
+                    _kRandom = Math.max(0, Math.min(_kRandom + 1, 3));
                 }
                 self.kRandom = _kRandom;
-                
-                console.log("kRandom : " +_kRandom)
                 self.removeMarker();
 
                 var kCenter = contentArray[self.kRandom];
@@ -239,15 +237,12 @@
                 self.map.panTo({
                     lat: kCenter["lat"],
                     lng: kCenter["lon"],
-                }); 
-                /*
-                self.map.setCenter({
-                    lat: kCenter["lat"],
-                    lng: kCenter["lon"],
                 });
-                */
+               
+              
+                
 
-            }, 4500);
+            }, 5500);
 
         },
 
@@ -312,7 +307,7 @@
                 var gmStyleInfo = document.querySelector(".gm-style-iw").parentElement;
                 var gmStyleX = document.querySelector(".gm-style-iw").parentElement.lastChild;
                 gmStyleInfo.className += gmStyleX.className ? ' infoWindow-parent' : 'infoWindow-parent';
-                gmStyleX.className += gmStyleX.className ? ' infoWindow-close' : 'infoWindow-close';
+                gmStyleX.style.display="none";
                 gmStyleInfo.firstChild.style.display = "none";
                 document.querySelector(".gm-style-iw").firstChild.style.display = "block";
             }
@@ -342,9 +337,18 @@
 
     .gm-style-iw {
         background-color: #D80D45;
-        width: 30vh!important;
+        width: 60vw !important;
         min-width: fit-content !important;
         top: 0vh;
+    }
+
+    .infoWindow-parent {
+        background-color: rgba(0, 0, 0, 0) !important;
+        padding: 0px !important;
+        margin: 0px !important;
+        left: -25vw !important;
+        top: -12.5vh !important;
+        max-width: 55vw !important;
     }
 
     .infoWindow-wrapper {
@@ -379,7 +383,7 @@
 
     .infoWindow-content {
         width: 70%!important;
-        font-size: 1.25vh;
+        font-size: 2.85vw;
         display: -ms-flexbox!important;
         display: -webkit-flex!important;
         display: flex!important;
@@ -418,26 +422,48 @@
         color: white;
     }
 
-    .infoWindow-parent {
-        background-color: rgba(0, 0, 0, 0) !important;
-        padding: 0px !important;
-        margin: 0px !important;
-        left: 0px !important;
-        top: -11.5vh !important;
-        max-width: 15vw !important;
-    }
+
 
     .infoWindow-close {
-
+        display: none!important;
         width: 0px !important;
         height: 0px!important;
         overflow: hidden!important;
         position: absolute!important;
         right: 0px!important;
         top: 0px!important;
-        z-index: 10000!important;
+        z-index: 0!important;
         cursor: pointer!important;
         opacity: 0.7!important;
+
+    }
+
+    .infoWindow-close img {
+        display: none!important;
+    }
+
+
+    @media only screen and (min-width: 600px) {
+
+        .infoWindow-content {
+            width: 70%!important;
+            font-size: 1.25vh;
+        }
+        .infoWindow-parent {
+            background-color: rgba(0, 0, 0, 0) !important;
+            padding: 0px !important;
+            margin: 0px !important;
+            left: 0px !important;
+            top: -11.5vh !important;
+            max-width: 15vw !important;
+        }
+
+        .gm-style-iw {
+            background-color: #D80D45;
+            width: 30vh!important;
+            min-width: fit-content !important;
+            top: 0vh;
+        }
 
     }
 

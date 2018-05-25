@@ -1,5 +1,5 @@
 <template>
-<form id="contact-form" @submit="checkForm" action="/" method="post"> 
+<form id="contact-form" v-on:submit.prevent="checkForm"> 
     <h2>
         <span >{{ $t("form.request",lang) }}</span>
         <span class="f-bold">{{ $t("form.service",lang) }}</span>
@@ -20,15 +20,19 @@
     <p  v-if="errors.length">
     {{errors}}
     </p>
+     <p  id="response">
+  
+    </p>
 
-    <input type="submit" value="ENVIAR"  v-bind:class="{ active: lang == 'es' }">
-    <input type="submit" value="SEND"  v-bind:class="{ active: lang != 'es' }">
+    <input type="submit" value="ENVIAR"  v-bind:class="{ active: lang == 'es' }" v-on:click="checkForm()">
+    <input type="submit" value="SEND"  v-bind:class="{ active: lang != 'es' }" v-on:click="checkForm()">
 
 
 </form>
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         name: 'NavbarComponent',
         props: {
@@ -43,21 +47,44 @@
                 errors: [],
                 name: null,
                 phone: null,
-                email: null
+                email: null,
+                ajaxmsg: null
             }
         },
         methods: {
             checkForm: function(e) {
+
                 this.errors = [];
+                var vm = this;
                 if (!this.name) this.errors.push("Ingresa un nombre valido");
                 if (!this.email) {
                     this.errors.push("Ingresa un  Correo valido");
                 } else if (!this.validEmail(this.email)) {
                     this.errors.push("Ingresa un  Correo valido");
                 }
-                if (!this.errors.length) return true;
-                console.log("Form Cheked");
-                e.preventDefault();
+                if (!this.errors.length) {
+
+                    
+                  
+                    axios.get('http://autostudio-cr.com/backend/contact.php?name='+vm.name+'&phone='+vm.phone+'&email='+vm.email)
+                        .then(function(response) {
+
+                            vm.updateAjax(response.data);
+
+                        })
+                        .catch(function(error) {
+                            // Wu oh! Something went wrong
+                            alert(error);
+                        });
+                }
+
+
+            },
+            updateAjax: function(x) {
+                document.getElementById("response").innerHTML = x;
+                setTimeout(function() {
+                    document.getElementById("response").innerHTML = "";
+                }, 5000)
             },
             validEmail: function(email) {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -217,6 +244,11 @@
                 text-align: left;
                 resize: none;
                 font-size: 0.75em;
+            }
+            #response {
+                font-size: 0.95em;
+                color: white;
+                text-align: center;
             }
             input[type="submit"] {
                 font-family: 'font-medium';
