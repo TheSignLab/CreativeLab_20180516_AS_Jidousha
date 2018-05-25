@@ -2,7 +2,6 @@
   <div class="google-map" id="AutoStudioMap"></div>
 
 </template>
-
 <script>
     var MapStyleJson = [{
             "elementType": "geometry",
@@ -134,68 +133,66 @@
             }]
         }
     ];
+
+
+
+
+    var imgPath = "http://dev.autostudio-cr.com/static/img/event";
+    var contentArray = [{
+        id: 0,
+        lat: 9.935166,
+        lon:-84.091349,
+        place: "Paseo Colón - Calle 34",
+        message: "A Paola le saltó una piedra rompiendo su parabrisas."
+
+    }, {
+        id: 1,
+        lat: 9.935610,
+        lon: -84.096430,
+        place: "Paseo Colón - Calle 16",
+        message: "A José le hicieron un  camanance al salir del mall."
+    }, {
+        id: 2,
+        lat: 9.935610,
+        lon: -84.083120,
+        place: "San José - Avenida 26",
+        message: "A María se le recostaron en su vehículo ocacionando un camanance"
+    }, {
+        id: 3,
+        lat: 9.922421,
+        lon: -84.083120,
+        place: "San José - Calle 40",
+        message: "Iván le dió un portazo a su carro en el parcking"
+    }]
+
+
+
+
+
+
+
+
+
     export default {
+
         name: 'MapComponent',
+
         data() {
             return {
                 msg: 'Welcome to Your Vue.js App'
             }
         },
+
         mounted: function() {
-            var imgPath = "http://dev.autostudio-cr.com/static/img/event";
-            var contentArray = [{
-                id: 0,
-                lat: 9.934739,
-                lon: -84.087502,
-                place: "Paseo Colón - Calle 34",
-                message: "José chocó su auto al salir de un  mall"
 
-            }, {
-                id: 1,
-                lat: 9.934739,
-                lon: -84.087502,
-                place: "Paseo Colón - Calle 34",
-                message: "José chocó su auto al salir de un  mall"
-            }, {
-                id: 2,
-                lat: 9.934739,
-                lon: -84.087502,
-                place: "Paseo Colón - Calle 34",
-                message: "José chocó su auto al salir de un  mall"
-            }]
-
-            var _content = contentArray[0];
-            var content = '<div class="infoWindow-wrapper">' +
-                '<img class="infoWindow-thumb" src="' + imgPath + _content['id'] + '.jpg">' +
-                '<div class="infoWindow-content">' +
-                '<div class="infoWindow-place">' +
-                _content["place"] +
-                '</div>' +
-                '<div class="infoWindow-message">' +
-                _content["message"] +
-                '</div>' +
-                '</div>' +
-                '</div>';
-
-            this.icon = {
-                /*url: "https://image.ibb.co/edwvoy/carrogps.png",*/
-                url: "https://image.ibb.co/mTKi0o/gps.png",
-                scaledSize: new google.maps.Size(30, 40),
-                /*scaledSize: new google.maps.Size(50, 50),*/
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(0, 0)
-            };
-            this.meLatLng = {
-                lat: 9.934739,
-                lng: -84.087502
-            };
+            this.markerList = [];
             this.map = new google.maps.Map(document.getElementById('AutoStudioMap'), {
                 center: {
                     lat: 9.934739,
                     lng: -84.087502
                 },
                 scrollwheel: false,
-                zoom: 11,
+                zoom: 15,
                 styles: MapStyleJson
             });
             this.map.setOptions({
@@ -204,73 +201,134 @@
                 scrollwheel: false,
                 disableDoubleClickZoom: true
             });
-            this.marker = new google.maps.Marker({
-                position: this.meLatLng,
-                map: this.map,
-                icon: this.icon,
-                title: 'AutoStudio!'
-            });
+            this.icon = {
+                url: "http://dev.autostudio-cr.com/static/img/gps.png",
+                scaledSize: new google.maps.Size(30, 40),
+                /*scaledSize: new google.maps.Size(50, 50),*/
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 0)
+            }
 
-            this.infowindow = new google.maps.InfoWindow({
-                content: content,
 
-                // Assign a maximum value for the width of the infowindow allows
-                // greater control over the various content elements
-                maxWidth: 350
-            });
-            this.infowindow.open(this.map, this.marker);
-            google.maps.event.addListener(this.infowindow, 'domready', initPopupCarousel);
+            this.kRandom = Math.floor(Math.random() * 4);
 
-            var _thisInfoWindo = this.infowindow;
-            var _thisMarker = this.marker;
-            var _thisMap = this.map;
+            var kCenter = contentArray[this.kRandom];
+            this.addMarker(this.kRandom);
+            this.map.setCenter({
+                lat: kCenter["lat"],
+                lng: kCenter["lon"],
+            })
 
-            this.marker.addListener('click', function() {
 
-                _thisInfoWindo.open(_thisMap, _thisMarker);
-                updateStyles();
-            });
+            const self = this;
 
-            this.map.addListener('tilesloaded', function() {
-                updateStyles();
+            this.intervalid1 = setInterval(function() {
+                console.log("self.kRandom : " +self.kRandom)
+                var _kRandom =  Math.floor(Math.random() * 4);
+                if(self.kRandom == _kRandom){
+                    _kRandom = Math.max(0, Math.min(_kRandom + 1,4));
+                }
+                self.kRandom = _kRandom;
+                
+                console.log("kRandom : " +_kRandom)
+                self.removeMarker();
+
+                var kCenter = contentArray[self.kRandom];
+
+                self.addMarker(self.kRandom);
+                self.map.panTo({
+                    lat: kCenter["lat"],
+                    lng: kCenter["lon"],
+                }); 
                 /*
+                self.map.setCenter({
+                    lat: kCenter["lat"],
+                    lng: kCenter["lon"],
+                });
+                */
+
+            }, 4500);
+
+        },
+
+
+        methods: {
+            addMarker: function(k) {
+
+                // Adding a Marker Welcome message
+                //console.log("Google Maps Carousel -> adding marker [" + k + "]; \n");
+
+                // Creating _this variables from content array
+                var _thisMarker = contentArray[k];
+                var _thisId = _thisMarker["id"];
+                var _thisLat = _thisMarker["lat"];
+                var _thisLng = _thisMarker["lon"];
+                var _thisPosition = {
+                    lat: _thisLat,
+                    lng: _thisLng
+                };
+                var _thisPlace = _thisMarker["place"];
+                var _thisMessage = _thisMarker["message"];
+                var _thisPhotoURL = imgPath + _thisId + '.jpg';
+
+                // Render info window
+                var _infoWindowContent = '<div class="infoWindow-wrapper">' +
+                    '<img class="infoWindow-thumb" src="' + _thisPhotoURL + '">' +
+                    '<div class="infoWindow-content">' +
+                    '<div class="infoWindow-place">' +
+                    _thisPlace +
+                    '</div>' +
+                    '<div class="infoWindow-message">' +
+                    _thisMessage +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+
+                // Create new google map marker
+                this.marker = new google.maps.Marker({
+                    position: _thisPosition,
+                    map: this.map,
+                    icon: this.icon,
+                    title: 'AutoStudio!'
+                });
+
+                // Create the info window 
+                this.infoWindow = new google.maps.InfoWindow({
+                    content: _infoWindowContent
+                });
+
+                //Attach info window and marker
+                google.maps.event.addListener(this.infoWindow, 'domready', this.updateInfoWindoStyle);
+                this.infoWindow.open(this.map, this.marker);
+
+
+            },
+
+            removeMarker: function() {
+                this.marker.setMap(null);
+            },
+
+            updateInfoWindoStyle: function() {
                 var gmStyleInfo = document.querySelector(".gm-style-iw").parentElement;
-                var gmStyleInfoContainer = document.querySelector(".gm-style-iw");
                 var gmStyleX = document.querySelector(".gm-style-iw").parentElement.lastChild;
-
-                gmStyleInfo.style.backgroundColor = "#D80D45";
-                gmStyleInfo.firstChild.style.display = "none";
-                gmStyleX.style.display = "none";
-                gmStyleInfoContainer.style.backgroundColor = "rgba(0,0,0,0)";
-
-                gmStyleInfoContainer.style.top = "0px";
-                gmStyleInfoContainer.style.left = "0px";
-
-*/
-            });
-
-            function updateStyles() {
-                var gmStyleInfo = document.querySelector(".gm-style-iw").parentElement;
-                var gmStyleX = document.querySelector(".gm-style-iw").parentElement.lastChild;
-
                 gmStyleInfo.className += gmStyleX.className ? ' infoWindow-parent' : 'infoWindow-parent';
                 gmStyleX.className += gmStyleX.className ? ' infoWindow-close' : 'infoWindow-close';
-
                 gmStyleInfo.firstChild.style.display = "none";
-                
                 document.querySelector(".gm-style-iw").firstChild.style.display = "block";
             }
 
-            function initPopupCarousel() {
-                updateStyles()
-            }
-
-
         }
-
     };
 
 </script>
+
+
+
+
+
+
+
+
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -283,8 +341,10 @@
     }
 
     .gm-style-iw {
-        left: 0px !important;
         background-color: #D80D45;
+        width: 30vh!important;
+        min-width: fit-content !important;
+        top: 0vh;
     }
 
     .infoWindow-wrapper {
@@ -308,7 +368,9 @@
         -webkit-align-items: center!important;
         -ms-flex-align: center!important;
         align-items: center!important;
-        
+
+
+
     }
 
     .infoWindow-thumb {
@@ -317,7 +379,7 @@
 
     .infoWindow-content {
         width: 70%!important;
-        font-size: 1.25vw;
+        font-size: 1.25vh;
         display: -ms-flexbox!important;
         display: -webkit-flex!important;
         display: flex!important;
@@ -342,6 +404,8 @@
         font-family: "font-light";
         font-size: 1em;
         padding-left: 0.5em;
+        padding-right: 0.5em;
+
         color: white;
     }
 
@@ -349,16 +413,17 @@
         font-family: "font-bold";
         font-size: 1em;
         padding-left: 0.5em;
+        padding-right: 0.5em;
         text-align: left;
         color: white;
     }
 
     .infoWindow-parent {
-        background-color: rgba(0,0,0,0) !important;
+        background-color: rgba(0, 0, 0, 0) !important;
         padding: 0px !important;
         margin: 0px !important;
-        left: 10px !important;
-        top: -130px !important;
+        left: 0px !important;
+        top: -11.5vh !important;
         max-width: 15vw !important;
     }
 

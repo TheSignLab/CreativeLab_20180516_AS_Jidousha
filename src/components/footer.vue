@@ -28,8 +28,14 @@
             </span>
             <br>
             <div class="socialIcons">
-                <img src="../assets/img/face.png">
-                <img src="../assets/img/inst.png">
+                <a href="" class="facebook">
+                    <img src="../assets/img/face.png" class="default">
+                    <img src="../assets/img/face_hover.png" class="hover">
+                </a>
+                <a href="" class="instagram">
+                    <img src="../assets/img/inst.png" class="default">
+                    <img src="../assets/img/inst_hover.png" class="hover">
+                </a>
             </div>
         </div>
         <img src="../assets/img/autostudiologo.png" class="footer-float-logo">
@@ -145,11 +151,31 @@
             }
             div.socialIcons {
                 display: block;
+                
+                a{
+                    .default{
+                        display: inline-block;
+                    }
+                    .hover{
+                        display: none;
+                    }
+                }
+                
+                a:hover{
+                     .default{
+                        display: none;
+                    }
+                    .hover{
+                        display: inline-block;
+                    }
+                }
+                
                 img {
                     display: inline-block;
                     margin-left: 0.25vw;
                     margin-right: 0.25vw;
                     width: 7.5vw;
+                    cursor: pointer;
                 }
             }
         }

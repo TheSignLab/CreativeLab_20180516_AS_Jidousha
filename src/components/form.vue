@@ -1,25 +1,30 @@
 <template>
-<form>
+<form id="contact-form" @submit="checkForm" action="/" method="post"> 
     <h2>
         <span >{{ $t("form.request",lang) }}</span>
         <span class="f-bold">{{ $t("form.service",lang) }}</span>
     </h2>
     <!-- Nombres -->
     <label>{{ $t("form.name",lang) }}</label>
-    <input>
+    <input type="text" name="name" id="name" v-model="name">
     <!-- Telefono -->
     <label>{{ $t("form.phone",lang) }}</label>
-    <input>
+    <input type="text" name="phone" id="phone" v-model="phone">
     <!-- Email -->
     <label>{{ $t("form.email",lang) }}</label>
-    <input>
+    <input type="text" name="email" id="email" v-model="email">
     <!-- Mensaje-->
     <p>
         *{{ $t("form.message",lang) }}
-        </p>
-    
+     </p>
+    <p  v-if="errors.length">
+    {{errors}}
+    </p>
+
     <input type="submit" value="ENVIAR"  v-bind:class="{ active: lang == 'es' }">
     <input type="submit" value="SEND"  v-bind:class="{ active: lang != 'es' }">
+
+
 </form>
 </template>
 
@@ -33,9 +38,30 @@
                 default: 'es'
             }
         },
-        data() {
+        data: function() {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                errors: [],
+                name: null,
+                phone: null,
+                email: null
+            }
+        },
+        methods: {
+            checkForm: function(e) {
+                this.errors = [];
+                if (!this.name) this.errors.push("Ingresa un nombre valido");
+                if (!this.email) {
+                    this.errors.push("Ingresa un  Correo valido");
+                } else if (!this.validEmail(this.email)) {
+                    this.errors.push("Ingresa un  Correo valido");
+                }
+                if (!this.errors.length) return true;
+                console.log("Form Cheked");
+                e.preventDefault();
+            },
+            validEmail: function(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
             }
         }
     }
@@ -132,7 +158,8 @@
 
     @media only screen and (min-width: 768px) {
         form {
-            width: 30vh;
+            width: 22.5vh;
+            min-width: 250px;
             height: fit-content;
             min-height: 290px;
             background-color: @color-red;
