@@ -164,5 +164,7 @@
             .align-items(center);
         }
     }
-
+.gm-style{
+        display: none !important;
+    }
 </style>
