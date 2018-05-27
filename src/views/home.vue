@@ -1,22 +1,34 @@
 <template>
+
     <div class="view">
+        
         <as-navbar class="navbar" v-on:updateLanguage="setLanguage"></as-navbar>
+        
         <div class="wrapper">
+            
             <div class="col">
-            <!-- <as-info-section></as-info-section> -->
                <as-social-section v-bind:lang="appLang"></as-social-section>
             </div>
+            
             <div class="float">
                 <as-form v-bind:lang="appLang"></as-form>
             </div>
+            
             <div class="col">
-            <as-map-section></as-map-section>
-            </div>
+                <as-map-section v-bind:lang="appLang"></as-map-section>
+            </div>   
             
         </div>
+        
         <as-footer class="footer" v-bind:lang="appLang"></as-footer>
+        
     </div>
+
 </template>
+
+
+
+
 
 
 

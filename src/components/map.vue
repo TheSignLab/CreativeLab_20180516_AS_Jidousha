@@ -1,140 +1,119 @@
 <template>
   <div class="google-map" id="AutoStudioMap"></div>
-
 </template>
+
 <script>
     var MapStyleJson = [{
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#f5f5f5"
-            }]
-        },
-        {
-            "elementType": "labels.icon",
-            "stylers": [{
-                "visibility": "off"
-            }]
-        },
-        {
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#616161"
-            }]
-        },
-        {
-            "elementType": "labels.text.stroke",
-            "stylers": [{
-                "color": "#f5f5f5"
-            }]
-        },
-        {
-            "featureType": "administrative.land_parcel",
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#bdbdbd"
-            }]
-        },
-        {
-            "featureType": "landscape",
-            "elementType": "geometry.fill",
-            "stylers": [{
-                "color": "#e8e8e8"
-            }]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#eeeeee"
-            }]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#757575"
-            }]
-        },
-        {
-            "featureType": "poi.park",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#e5e5e5"
-            }]
-        },
-        {
-            "featureType": "poi.park",
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#9e9e9e"
-            }]
-        },
-        {
-            "featureType": "road",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#ffffff"
-            }]
-        },
-        {
-            "featureType": "road.arterial",
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#757575"
-            }]
-        },
-        {
-            "featureType": "road.highway",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#ff0543"
-            }]
-        },
-        {
-            "featureType": "road.highway",
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#616161"
-            }]
-        },
-        {
-            "featureType": "road.local",
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#9e9e9e"
-            }]
-        },
-        {
-            "featureType": "transit.line",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#e5e5e5"
-            }]
-        },
-        {
-            "featureType": "transit.station",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#eeeeee"
-            }]
-        },
-        {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#002781"
-            }]
-        },
-        {
-            "featureType": "water",
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#9e9e9e"
-            }]
-        }
-    ];
-
-
+        elementType: "geometry",
+        stylers: [{
+            color: "#f5f5f5"
+        }]
+    }, {
+        elementType: "labels.icon",
+        stylers: [{
+            visibility: "off"
+        }]
+    }, {
+        elementType: "labels.text.fill",
+        stylers: [{
+            color: "#616161"
+        }]
+    }, {
+        elementType: "labels.text.stroke",
+        stylers: [{
+            color: "#f5f5f5"
+        }]
+    }, {
+        featureType: "administrative.land_parcel",
+        elementType: "labels.text.fill",
+        stylers: [{
+            color: "#bdbdbd"
+        }]
+    }, {
+        featureType: "landscape",
+        elementType: "geometry.fill",
+        stylers: [{
+            color: "#e8e8e8"
+        }]
+    }, {
+        featureType: "poi",
+        elementType: "geometry",
+        stylers: [{
+            color: "#eeeeee"
+        }]
+    }, {
+        featureType: "poi",
+        elementType: "labels.text.fill",
+        stylers: [{
+            color: "#757575"
+        }]
+    }, {
+        featureType: "poi.park",
+        elementType: "geometry",
+        stylers: [{
+            color: "#e5e5e5"
+        }]
+    }, {
+        featureType: "poi.park",
+        elementType: "labels.text.fill",
+        stylers: [{
+            color: "#9e9e9e"
+        }]
+    }, {
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [{
+            color: "#ffffff"
+        }]
+    }, {
+        featureType: "road.arterial",
+        elementType: "labels.text.fill",
+        stylers: [{
+            color: "#757575"
+        }]
+    }, {
+        featureType: "road.highway",
+        elementType: "geometry",
+        stylers: [{
+            color: "#ff0543"
+        }]
+    }, {
+        featureType: "road.highway",
+        elementType: "labels.text.fill",
+        stylers: [{
+            color: "#616161"
+        }]
+    }, {
+        featureType: "road.local",
+        elementType: "labels.text.fill",
+        stylers: [{
+            color: "#9e9e9e"
+        }]
+    }, {
+        featureType: "transit.line",
+        elementType: "geometry",
+        stylers: [{
+            color: "#e5e5e5"
+        }]
+    }, {
+        featureType: "transit.station",
+        elementType: "geometry",
+        stylers: [{
+            color: "#eeeeee"
+        }]
+    }, {
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [{
+            color: "#002781"
+        }]
+    }, {
+        featureType: "water",
+        elementType: "labels.text.fill",
+        stylers: [{
+            color: "#9e9e9e"
+        }]
+    }];
 
 
     var imgPath = "http://autostudio-cr.com/static/img/event";
@@ -168,18 +147,22 @@
 
 
 
-
-
-
-
-
     export default {
 
         name: 'MapComponent',
-
+        props: {
+            lang: {
+                type: String,
+                required: true,
+                default: 'es'
+            }
+        },
         data() {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'Map Component',
+                markers: [],
+                infowindows: [],
+                kRandom: 0
             }
         },
 
@@ -192,7 +175,7 @@
                     lng: -84.087502
                 },
                 scrollwheel: false,
-                zoom: 15,
+                zoom: 16,
                 styles: MapStyleJson
             });
             this.map.setOptions({
@@ -210,51 +193,51 @@
             }
 
 
-            this.kRandom = Math.floor(Math.random() * 4);
+            this.geocoder = new google.maps.Geocoder;
 
-            var kCenter = contentArray[this.kRandom];
-            this.addMarker(this.kRandom);
-            this.map.setCenter({
-                lat: kCenter["lat"],
-                lng: kCenter["lon"],
-            })
+            this.position = {
+                lat: 9.932239,
+                lng: -84.084402
+            };
+
+            var deltaX,deltaY;
+
+            for (var k = 0; k < contentArray.length; k++) {
+
+                deltaX = 0.0 * Math.random() * (Math.random() - Math.random());
+                deltaY = 0.0 * Math.random() * (Math.random() - Math.random());
+                contentArray[k].lat = contentArray[k].lat + deltaX;
+                contentArray[k].lon = contentArray[k].lon + deltaY;
+
+                this.markers.push(this.getMakerByContentArrayIndex(contentArray, k));
+                this.addInfoWindowByAddress(this.geocoder, contentArray, k);
+
+            }
 
 
             const self = this;
- 
+            setTimeout(function() {
+                self.stepCarousel(contentArray);
+            }, 1000);
+            
             this.intervalid1 = setInterval(function() {
-                console.log("self.kRandom : " + self.kRandom)
-                var _kRandom = Math.floor(Math.random() * 4);
-                if (self.kRandom == _kRandom) {
-                    _kRandom = Math.max(0, Math.min(_kRandom + 1, 3));
-                }
-                self.kRandom = _kRandom;
-                self.removeMarker();
-
-                var kCenter = contentArray[self.kRandom];
-
-                self.addMarker(self.kRandom);
-                self.map.panTo({
-                    lat: kCenter["lat"],
-                    lng: kCenter["lon"],
-                });
-               
-              
                 
-
-            }, 5500);
-
+                var showInThisIteration = false;
+                if (Math.random() > 0) {
+                    showInThisIteration = true;
+                }
+                if (showInThisIteration) {
+                    self.stepCarousel(contentArray);
+                }
+            },3500);
+            
         },
 
 
         methods: {
-            addMarker: function(k) {
 
-                // Adding a Marker Welcome message
-                //console.log("Google Maps Carousel -> adding marker [" + k + "]; \n");
-
-                // Creating _this variables from content array
-                var _thisMarker = contentArray[k];
+            getMakerByContentArrayIndex: function(ContentArray, Index) {
+                var _thisMarker = ContentArray[Index];
                 var _thisId = _thisMarker["id"];
                 var _thisLat = _thisMarker["lat"];
                 var _thisLng = _thisMarker["lon"];
@@ -262,54 +245,151 @@
                     lat: _thisLat,
                     lng: _thisLng
                 };
-                var _thisPlace = _thisMarker["place"];
-                var _thisMessage = _thisMarker["message"];
-                var _thisPhotoURL = imgPath + _thisId + '.jpg';
-
-                // Render info window
-                var _infoWindowContent = '<div class="infoWindow-wrapper">' +
-                    '<img class="infoWindow-thumb" src="' + _thisPhotoURL + '">' +
-                    '<div class="infoWindow-content">' +
-                    '<div class="infoWindow-place">' +
-                    _thisPlace +
-                    '</div>' +
-                    '<div class="infoWindow-message">' +
-                    _thisMessage +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
-
                 // Create new google map marker
-                this.marker = new google.maps.Marker({
+                var _marker = new google.maps.Marker({
                     position: _thisPosition,
                     map: this.map,
                     icon: this.icon,
                     title: 'AutoStudio!'
                 });
-
-                // Create the info window 
-                this.infoWindow = new google.maps.InfoWindow({
-                    content: _infoWindowContent
-                });
-
-                //Attach info window and marker
-                google.maps.event.addListener(this.infoWindow, 'domready', this.updateInfoWindoStyle);
-                this.infoWindow.open(this.map, this.marker);
-
-
+                return _marker;
             },
+
+
+            addInfoWindowByAddress: function(geocoder, ContentArray, Index) {
+                var self = this;
+                var _thisMarker = ContentArray[Index];
+                var _thisLat = _thisMarker["lat"];
+                var _thisLng = _thisMarker["lon"];
+                var _thisPosition = {
+                    lat: _thisLat,
+                    lng: _thisLng
+                };
+                var latlng = _thisPosition;
+                geocoder.geocode({
+                    'location': latlng
+                }, function(results, status) {
+                    if (status === 'OK') {
+                        if (results[1]) {
+
+                            var _address1 = results[1].formatted_address.replace(", San José, Costa Rica", "");
+                            // Creating _this variables from content array
+                            var _thisMarker = ContentArray[Index];
+                            var _thisId = _thisMarker["id"];
+
+                            var _thisPlace = _thisMarker["place"];
+                            var _thisMessage = _thisMarker["message"];
+                            var _thisPhotoURL = imgPath + _thisId + '.jpg';
+
+                            // Render info window
+                            var _infoWindowContent = '<div class="infoWindow-wrapper close" id="infoWindowId-' + _thisId + '">' +
+                                '<img class="infoWindow-thumb" src="' + _thisPhotoURL + '">' +
+                                '<div class="infoWindow-content">' +
+                                '<div class="infoWindow-place">' +
+                                _thisPlace +
+                                '</div>' +
+                                '<div class="infoWindow-message">' +
+                                _thisMessage +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+
+
+                            // Create the info window 
+                            var _infoWindow = new google.maps.InfoWindow({
+                                content: _infoWindowContent
+                            });
+
+                            //Attach info window and marker
+                            self.infowindows.push(_infoWindow);
+
+                            if (Index == ContentArray.length) {
+                                self.renderMarkersAndInfoWindows();
+                            }
+
+
+                        } else {
+                            console.log("Paila, no resultados");
+                        }
+                    } else {
+                        console.log('Geocoder failed due to: ' + status);
+                    }
+                });
+            },
+
+
+            renderMarkersAndInfoWindows: function() {
+                for (var k = 0; k < this.markers.length; k++) {
+                    google.maps.event.addListener(this.infowindows[k], 'domready', this.updateInfoWindowStyle);
+                    google.maps.event.addListener(this.infowindows[k], 'open', this.updateInfoWindowStyle);
+                }
+            },
+
 
             removeMarker: function() {
                 this.marker.setMap(null);
             },
 
-            updateInfoWindoStyle: function() {
+            updateInfoWindowStyle: function() {
                 var gmStyleInfo = document.querySelector(".gm-style-iw").parentElement;
                 var gmStyleX = document.querySelector(".gm-style-iw").parentElement.lastChild;
                 gmStyleInfo.className += gmStyleX.className ? ' infoWindow-parent' : 'infoWindow-parent';
-                gmStyleX.style.display="none";
+                gmStyleX.style.display = "none";
                 gmStyleInfo.firstChild.style.display = "none";
                 document.querySelector(".gm-style-iw").firstChild.style.display = "block";
+
+            },
+
+
+
+            stepCarousel: function(List) {
+                var k = this.kRandom;
+                var self = this;
+                try {
+                    var elem = document.getElementById("infoWindowId-" + k);
+                    elem.classList.add("close");
+                    setTimeout(function() {
+                        self.infowindows[k].close();
+                    }, 1500);
+                } catch (e) {
+                    console.log(k)
+                    console.log(document.getElementById("infoWindowId-" + k))
+                    self.infowindows[k].close();
+                }
+
+
+
+                var _k = this.getRandomK(List);
+                var _marker = this.markers[_k];
+                var _infowindow = this.infowindows[_k];
+                var _position = {
+                    lat: List[_k].lat,
+                    lng: List[_k].lon
+                }
+
+                _infowindow.open(this.map, _marker);
+               
+                var elem = document.getElementById("infoWindowId-" + _k);
+                elem.classList.remove("close");
+                
+                 this.updateInfoWindowStyle();
+                this.map.panTo(_position);
+                
+
+            },
+
+
+            getRandomK: function(List) {
+                var n = List.length;
+                var _kRandom = Math.floor(Math.random() * n);
+
+                while (this.kRandom == _kRandom) {
+                    _kRandom = Math.floor(Math.random() * n);
+                }
+
+                this.kRandom = _kRandom;
+
+                return _kRandom;
             }
 
         }
@@ -352,6 +432,7 @@
     }
 
     .infoWindow-wrapper {
+        opacity: 1 !important;
         width: 100%!important;
         height: fit-content!important;
         display: -ms-flexbox!important;
@@ -372,10 +453,22 @@
         -webkit-align-items: center!important;
         -ms-flex-align: center!important;
         align-items: center!important;
-
-
-
+        -webkit-transition: opacity 800ms ease-in-out!important;
+        -moz-transition: opacity 800ms ease-in-out!important;
+        -ms-transition: opacity 800ms ease-in-out!important;
+        -o-transition: opacity 800ms ease-in-out!important;
+        transition: opacity 800ms ease-in-out!important;
     }
+
+    .infoWindow-wrapper.close {
+        opacity: 0 !important;
+        -webkit-transition: opacity 100ms ease-in-out !important;
+        -moz-transition: opacity 100ms ease-in-out!important;
+        -ms-transition: opacity 100ms ease-in-out!important;
+        -o-transition: opacity 100ms ease-in-out!important;
+        transition: opacity 100ms ease-in-out!important;
+    }
+
 
     .infoWindow-thumb {
         width: 30%!important
