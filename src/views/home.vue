@@ -89,7 +89,7 @@
             }
 
             .float {
-                order:2;
+                order: 2;
                 display: block;
                 position: relative;
                 top: 0px;
@@ -117,8 +117,6 @@
     /*Desktop Format*/
 
     @media only screen and (min-width: 768px) {
-
-
         .view {
             .navbar {
                 width: 100vw;
@@ -143,7 +141,7 @@
                     order: 3;
                     z-index: 500;
                     position: absolute;
-                    top: calc(50vh - 25%);
+                    top: calc(50vh - 30%);
                 }
                 .flex-display(flex);
                 .flex-direction(row);
@@ -164,7 +162,24 @@
             .align-items(center);
         }
     }
-.gm-style{
-        display: none !important;
+
+
+    
+
+
+    @media only screen and (min-width: 1440px) {
+        .view {
+            .wrapper {
+                .float {
+                    order: 3;
+                    z-index: 500;
+                    position: absolute;
+                    top: calc(50vh - 22%);
+                }
+            }
+        }
+        
     }
+
+    
 </style>

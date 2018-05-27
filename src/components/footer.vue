@@ -13,7 +13,7 @@
         <div class="col email">
             <span class="title">{{ $t("footer.email",lang) }}</span>
             <hr>
-            <span class="text">info@autostudio-cr.com</span>
+            <a href="mailto:info@autostudio-cr.com"><span class="text">info@autostudio-cr.com</span></a>
             <!--
             <span class="text">rafaelc@autostudio-cr.com</span>
             <span class="text">ivanl@autostudio-cr.com</span>

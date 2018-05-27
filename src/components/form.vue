@@ -64,9 +64,9 @@
                 }
                 if (!this.errors.length) {
 
-                    
-                  
-                    axios.get('http://autostudio-cr.com/backend/contact.php?name='+vm.name+'&phone='+vm.phone+'&email='+vm.email)
+
+
+                    axios.get('http://autostudio-cr.com/backend/contact.php?name=' + vm.name + '&phone=' + vm.phone + '&email=' + vm.email)
                         .then(function(response) {
 
                             vm.updateAjax(response.data);
@@ -185,10 +185,10 @@
 
     @media only screen and (min-width: 768px) {
         form {
-            width: 22.5vh;
-            min-width: 250px;
+            width: 18.5vh;
+            min-width: 200px;
             height: fit-content;
-            min-height: 290px;
+            min-height: 250px;
             background-color: @color-red;
             color: @color-white;
             font-family: "font-light";
@@ -203,8 +203,8 @@
 
 
             h2 {
-                padding-top: 3vh;
-                padding-bottom: 2vh;
+                padding-top: 2vh;
+                padding-bottom: 1.5vh;
                 font-size: 2vh;
                 font-family: "font-futura-italic";
                 span.f-bold {
@@ -246,6 +246,7 @@
                 font-size: 0.75em;
             }
             #response {
+                height: fit-content;
                 font-size: 0.95em;
                 color: white;
                 text-align: center;
@@ -256,8 +257,18 @@
                 border-radius: 0.85vw;
                 width: fit-content;
                 margin: 0;
-                margin-bottom: 10%;
+                margin-bottom: 5%;
                 padding: 5% 5%;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 1440px) {
+        form {
+            width: 22.5vh;
+            h2 {
+                padding-top: 3vh;
+                padding-bottom: 2vh;
             }
         }
     }
