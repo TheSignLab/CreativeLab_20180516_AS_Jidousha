@@ -93,15 +93,9 @@ try {
 
     //Recipients
     $mail->setFrom('contact@autostudio-cr.com', 'Landing Page');
-    //''
     // Add a recipient
     $mail->addAddress('contact@autostudio-cr.com');
-    //$mail->addAddress('wallamejorge@hotmail.com');  
-    $mail->addReplyTo('contact@autostudio-cr.com');
-    $mail->addCC('info@autostudio-cr.com');
-    $mail->addCC('estebanr@thesignlab.co');
-    $mail->addCC('wallamejorge@hotmail.com');
-
+    $mail->addReplyTo('contact@autostudio-cr.com');  
     $message = file_get_contents('templates/emailAdmissions.html'); 
     $message = str_replace('{{ThisName}}', $inName, $message);
     $message = str_replace('{{ThisPhone}}', $inPhone, $message);
@@ -113,7 +107,7 @@ try {
     $mail->Subject = 'AutoStudio  - Contacto por Landingpage';
     $mail->Body    = 'AutoStudio  - Contacto por Landingpage';
     $mail->msgHTML($message, dirname(__FILE__));
-    $mail->AltBody = 'AutoStudio  - Contacto por Landingpage';
+    $mail->AltBody = 'AutoStudio  - Contacto por Landingpage de '.$inName.'\n Email : '.$inEmail.' \n Phone : '.$inPhone;
 
     $mail->send();
     
@@ -136,7 +130,6 @@ try {
 
 
 ?>
-
 
 
 

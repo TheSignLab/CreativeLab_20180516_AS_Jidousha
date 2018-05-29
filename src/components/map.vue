@@ -13,7 +13,6 @@
                 <div class="message">
                     <h2>{{item.address}}</h2>
                     <h3>{{item.message}}</h3>
-
                 </div>
             </div>
 
@@ -128,15 +127,14 @@
 
             this.addEventsByContentArray(MapContent, MapImgPath);
 
+            
+            this.InfoWindowK = this.getRandomK(MapContent);
 
-            var loop1 = function() {
+            var loop = function() {
                 self.setLoopState("ready");
             }
-            var loop2 = function() {
-                self.setLoopState("ready", loop1);
-            }
 
-            loop1();
+            loop();
 
             /*
             var k = 0;
@@ -200,7 +198,7 @@
                 var gmLat = _position.lat();
                 var gmLng = _position.lng();
                 var gmLatLng = new google.maps.LatLng(gmLat, gmLng);
-                slowPanTo(this.map, gmLatLng, 80, 100, callback);
+                slowPanTo(this.map, gmLatLng, 100, 130, callback);
 
             },
 
@@ -424,13 +422,14 @@
             .align-content(center);
             .align-items(center);
             h2 {
-                font-family: "font-light";
+                font-family: "font-bold";
                 font-size: 1.1em;
                 padding: 0.5em 1em;
                 padding-top: 0em;
             }
             h3 {
-                font-family: "font-bold";
+               
+                 font-family: "font-light";
                 font-size: 1em;
                 padding-left: 1em;
             }

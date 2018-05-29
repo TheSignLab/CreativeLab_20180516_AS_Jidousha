@@ -65,7 +65,7 @@
                 if (!this.errors.length) {
 
 
-
+                    document.getElementById("response").innerHTML = "Enviando ...";
                     axios.get('http://autostudio-cr.com/backend/contact.php?name=' + vm.name + '&phone=' + vm.phone + '&email=' + vm.email)
                         .then(function(response) {
 
