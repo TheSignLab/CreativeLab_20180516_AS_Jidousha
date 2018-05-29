@@ -1,0 +1,36 @@
+{
+"path":"http://autostudio-cr.com/static/img/event",
+"contentList": [{
+        "id": 0,
+        "lat": 9.935166,
+        "lon": -84.091349,
+        "place": "Paseo Colón - Calle 34",
+        "message": "A Paola le saltó una piedra rompiendo su parabrisas.",
+        "place-en": "Paseo Colón - Calle 34",
+        "message-en": "A Paola le saltó una piedra rompiendo su parabrisas."
+    }, {
+        "id": 1,
+        "lat": 9.935610,
+        "lon": -84.096430,
+        "place": "Paseo Colón - Calle 16",
+        "message": "A José le hicieron un  camanance al salir del mall.",
+        "place-en": "Paseo Colón - Calle 16",
+        "message-en": "A José le hicieron un  camanance al salir del mall."
+    }, {
+        "id": 2,
+        "lat": 9.935610,
+        "lon": -84.083120,
+        "place": "San José - Avenida 26",
+        "message": "A María se le recostaron en su vehículo ocacionando un camanance",
+         "place-en": "San José - Avenida 26",
+        "message-en": "A María se le recostaron en su vehículo ocacionando un camanance"
+    }, {
+        "id": 3,
+        "lat": 9.922421,
+        "lon": -84.083120,
+        "place": "San José - Calle 40",
+        "message": "Iván le dió un portazo a su carro en el parcking",
+        "place-en": "San José - Calle 40",
+        "message-en": "Iván le dió un portazo a su carro en el parcking"
+    }]
+}

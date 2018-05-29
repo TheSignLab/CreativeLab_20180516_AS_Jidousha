@@ -1,151 +1,70 @@
 <template>
-  <div class="google-map" id="AutoStudioMap"></div>
+    <div class="map-wrapper">
+        <div class="google-map" id="AutoStudioMap"></div>
+        <ul id="infoWindow-list" class="infoWindows-wrapper">
+        <li v-for="(item, index) in infowindows">
+        <div v-if="item.id == InfoWindowK" 
+             class="infoWindow-mask" 
+             v-bind:class="loopState">
+            <div class="infoWindow block">
+                <div class="thumb" 
+                     v-bind:style="{ 'background-image': 'url(' + item.imgPath + ')' }">
+                </div>
+                <div class="message">
+                    <h2>{{item.address}}</h2>
+                    <h3>{{item.message}}</h3>
+
+                </div>
+            </div>
+
+        </div>
+        </li>
+        </ul>
+    </div>
 </template>
 
 <script>
-    var MapStyleJson = [{
-        elementType: "geometry",
-        stylers: [{
-            color: "#f5f5f5"
-        }]
-    }, {
-        elementType: "labels.icon",
-        stylers: [{
-            visibility: "off"
-        }]
-    }, {
-        elementType: "labels.text.fill",
-        stylers: [{
-            color: "#616161"
-        }]
-    }, {
-        elementType: "labels.text.stroke",
-        stylers: [{
-            color: "#f5f5f5"
-        }]
-    }, {
-        featureType: "administrative.land_parcel",
-        elementType: "labels.text.fill",
-        stylers: [{
-            color: "#bdbdbd"
-        }]
-    }, {
-        featureType: "landscape",
-        elementType: "geometry.fill",
-        stylers: [{
-            color: "#e8e8e8"
-        }]
-    }, {
-        featureType: "poi",
-        elementType: "geometry",
-        stylers: [{
-            color: "#eeeeee"
-        }]
-    }, {
-        featureType: "poi",
-        elementType: "labels.text.fill",
-        stylers: [{
-            color: "#757575"
-        }]
-    }, {
-        featureType: "poi.park",
-        elementType: "geometry",
-        stylers: [{
-            color: "#e5e5e5"
-        }]
-    }, {
-        featureType: "poi.park",
-        elementType: "labels.text.fill",
-        stylers: [{
-            color: "#9e9e9e"
-        }]
-    }, {
-        featureType: "road",
-        elementType: "geometry",
-        stylers: [{
-            color: "#ffffff"
-        }]
-    }, {
-        featureType: "road.arterial",
-        elementType: "labels.text.fill",
-        stylers: [{
-            color: "#757575"
-        }]
-    }, {
-        featureType: "road.highway",
-        elementType: "geometry",
-        stylers: [{
-            color: "#ff0543"
-        }]
-    }, {
-        featureType: "road.highway",
-        elementType: "labels.text.fill",
-        stylers: [{
-            color: "#616161"
-        }]
-    }, {
-        featureType: "road.local",
-        elementType: "labels.text.fill",
-        stylers: [{
-            color: "#9e9e9e"
-        }]
-    }, {
-        featureType: "transit.line",
-        elementType: "geometry",
-        stylers: [{
-            color: "#e5e5e5"
-        }]
-    }, {
-        featureType: "transit.station",
-        elementType: "geometry",
-        stylers: [{
-            color: "#eeeeee"
-        }]
-    }, {
-        featureType: "water",
-        elementType: "geometry",
-        stylers: [{
-            color: "#002781"
-        }]
-    }, {
-        featureType: "water",
-        elementType: "labels.text.fill",
-        stylers: [{
-            color: "#9e9e9e"
-        }]
-    }];
+    const MapStyleJson = require('../assets/MapStyle.json');
+    const MapContentJson = require('../assets/MapContent.json');
 
+    const MapImgPath = MapContentJson["path"];
+    const MapContent = MapContentJson["contentList"];
 
-    var imgPath = "http://autostudio-cr.com/static/img/event";
-    var contentArray = [{
-        id: 0,
-        lat: 9.935166,
-        lon: -84.091349,
-        place: "Paseo Colón - Calle 34",
-        message: "A Paola le saltó una piedra rompiendo su parabrisas."
+    var slowPanTo = function(map, endPosition, n_intervals, T_msec, onFinish) {
+        var f_timeout, getStep, i, j, lat_array, lat_delta, lat_step, lng_array, lng_delta, lng_step, pan, ref, startPosition;
+        getStep = function(delta) {
+            return parseFloat(delta) / n_intervals;
+        };
+        startPosition = map.getCenter();
+        lat_delta = endPosition.lat() - startPosition.lat();
+        lng_delta = endPosition.lng() - startPosition.lng();
+        lat_step = getStep(lat_delta);
+        lng_step = getStep(lng_delta);
+        lat_array = [];
+        lng_array = [];
+        for (i = j = 1, ref = n_intervals; j <= ref; i = j += +1) {
+            lat_array.push(map.getCenter().lat() + i * lat_step);
+            lng_array.push(map.getCenter().lng() + i * lng_step);
+        }
+        f_timeout = function(i, i_min, i_max) {
+            return parseFloat(T_msec) / n_intervals;
+        };
+        pan = function(i) {
+            if (i < lat_array.length) {
+                return setTimeout(function() {
+                    map.panTo(new google.maps.LatLng({
+                        lat: lat_array[i],
+                        lng: lng_array[i]
+                    }));
+                    return pan(i + 1);
+                }, f_timeout(i, 0, lat_array.length - 1));
+            } else {
+                onFinish();
+            }
+        };
 
-    }, {
-        id: 1,
-        lat: 9.935610,
-        lon: -84.096430,
-        place: "Paseo Colón - Calle 16",
-        message: "A José le hicieron un  camanance al salir del mall."
-    }, {
-        id: 2,
-        lat: 9.935610,
-        lon: -84.083120,
-        place: "San José - Avenida 26",
-        message: "A María se le recostaron en su vehículo ocacionando un camanance"
-    }, {
-        id: 3,
-        lat: 9.922421,
-        lon: -84.083120,
-        place: "San José - Calle 40",
-        message: "Iván le dió un portazo a su carro en el parcking"
-    }]
-
-
-
+        return pan(0);
+    };
 
     export default {
 
@@ -162,22 +81,37 @@
                 msg: 'Map Component',
                 markers: [],
                 infowindows: [],
-                kRandom: 0
+                kRandom: 0,
+                InfoWindowK: 0,
+                loopState: "ready"
             }
         },
 
         mounted: function() {
 
+            const self = this;
+
             this.markerList = [];
+            this.infowindows = [];
+
+            var points = [{
+                        lat: 9.935166,
+                        lng: -84.091349
+                    },
+                    {
+                        lat: 9.922421,
+                        lng: -84.083120
+                    }
+                ],
+                sel_point = 0;
+
             this.map = new google.maps.Map(document.getElementById('AutoStudioMap'), {
-                center: {
-                    lat: 9.934739,
-                    lng: -84.087502
-                },
+                center: points[sel_point],
                 scrollwheel: false,
                 zoom: 16,
                 styles: MapStyleJson
             });
+
             this.map.setOptions({
                 draggable: false,
                 zoomControl: false,
@@ -192,50 +126,154 @@
                 anchor: new google.maps.Point(0, 0)
             }
 
+            this.addEventsByContentArray(MapContent, MapImgPath);
 
-            this.geocoder = new google.maps.Geocoder;
 
-            this.position = {
-                lat: 9.932239,
-                lng: -84.084402
-            };
-
-            var deltaX,deltaY;
-
-            for (var k = 0; k < contentArray.length; k++) {
-
-                deltaX = 0.0 * Math.random() * (Math.random() - Math.random());
-                deltaY = 0.0 * Math.random() * (Math.random() - Math.random());
-                contentArray[k].lat = contentArray[k].lat + deltaX;
-                contentArray[k].lon = contentArray[k].lon + deltaY;
-
-                this.markers.push(this.getMakerByContentArrayIndex(contentArray, k));
-                this.addInfoWindowByAddress(this.geocoder, contentArray, k);
-
+            var loop1 = function() {
+                self.setLoopState("ready");
+            }
+            var loop2 = function() {
+                self.setLoopState("ready", loop1);
             }
 
+            loop1();
 
-            const self = this;
-            setTimeout(function() {
-                self.stepCarousel(contentArray);
-            }, 1000);
-            
-            this.intervalid1 = setInterval(function() {
-                
-                var showInThisIteration = false;
-                if (Math.random() > 0) {
-                    showInThisIteration = true;
+            /*
+            var k = 0;
+            k = self.getRandomK(MapContent);
+            self.stepCarouselLoop(k);
+            setInterval(function() {
+                if (self.loopState == "ready") {
+                    self.setLoopState("opening");
+                    k = self.getRandomK(MapContent);
+                    self.stepCarouselLoop(k);
                 }
-                if (showInThisIteration) {
-                    self.stepCarousel(contentArray);
-                }
-            },3500);
-            
+            },0)
+*/
+
+
         },
 
 
         methods: {
+            getRandomK: function(List) {
+                var n = List.length;
+                var _kRandom = Math.floor(Math.random() * n);
+                while (this.kRandom == _kRandom) {
+                    _kRandom = Math.floor(Math.random() * n);
+                }
+                this.kRandom = _kRandom;
+                return _kRandom;
+            },
+            stepCarouselLoop: function(k) {
 
+                var self = this;
+
+                var _marker = this.markers[k];
+                var _position = _marker["position"];
+                var gmLat = _position.lat();
+                var gmLng = _position.lng();
+
+                var gmLatLng = new google.maps.LatLng(gmLat, gmLng);
+
+                var nSteps = 100;
+                var timeSteps = 35;
+                var panningTime = nSteps * timeSteps;
+                var animationTime = 2500;
+                var onFinishPanning = function() {
+
+                    self.setInfoWindowK(k);
+
+                };
+                slowPanTo(this.map, gmLatLng, nSteps, timeSteps, onFinishPanning);
+
+            },
+            setInfoWindowK: function(k) {
+                var self = this;
+                self.InfoWindowK = k;
+            },
+
+            setPanTo: function(callback) {
+                var k = this.InfoWindowK;
+                var _marker = this.markers[k];
+                var _position = _marker["position"];
+                var gmLat = _position.lat();
+                var gmLng = _position.lng();
+                var gmLatLng = new google.maps.LatLng(gmLat, gmLng);
+                slowPanTo(this.map, gmLatLng, 80, 100, callback);
+
+            },
+
+            setLoopState: function(_state, callback) {
+
+                var self = this;
+                console.log("Loop [state:" + _state + "]");
+
+                if (_state == "ready") {
+                    this.loopState = "ready";
+                    this.setLoopState("panningTo");
+                }
+
+                if (_state == "panningTo") {
+                    this.loopState = "panningTo";
+                    var callback = function() {
+                        setTimeout(function(){
+                             self.setLoopState("opening")
+                        },1000)
+                       
+                    }
+                    this.setPanTo(callback);
+                }
+
+                if (_state == "opening") {
+                    this.loopState = "opening";
+                    setTimeout(function() {
+                        self.setLoopState("opened")
+                    }, 1200);
+
+                }
+
+                if (_state == "opened") {
+                    this.loopState = "opened";
+                    setTimeout(function() {
+                        self.setLoopState("closing")
+                    }, 2500);
+                }
+
+                if (_state == "closing") {
+                    this.loopState = "closing";
+                    setTimeout(function() {
+                        self.setLoopState("closed")
+                    }, 1200);
+                }
+
+                if (_state == "closed") {
+                    this.loopState = "closed";
+                    setTimeout(function() {
+                        console.log("-------------------------------");
+                        self.InfoWindowK = self.getRandomK(MapContent);
+                        self.setLoopState("ready")
+                        self.loopState = "ready";
+                    }, 500);
+
+
+                }
+
+
+
+
+
+            },
+            addEventsByContentArray: function(ContentArray, ImagesPath) {
+                var _thisMarker = null;
+                var _thisInfoWindow = null;
+                for (var k = 0; k < ContentArray.length; k++) {
+                    _thisMarker = this.getMakerByContentArrayIndex(ContentArray, k);
+                    this.markers.push(_thisMarker);
+                    _thisInfoWindow = this.getInfoWindowByContentArrayIndex(ContentArray, ImagesPath, k);
+                    this.infowindows.push(_thisInfoWindow);
+                }
+            },
             getMakerByContentArrayIndex: function(ContentArray, Index) {
                 var _thisMarker = ContentArray[Index];
                 var _thisId = _thisMarker["id"];
@@ -254,143 +292,21 @@
                 });
                 return _marker;
             },
+            getInfoWindowByContentArrayIndex: function(ContentArray, MapImgPath, Index) {
+                var _thisInfoWindow = ContentArray[Index];
+                var _thisId = _thisInfoWindow["id"];
 
-
-            addInfoWindowByAddress: function(geocoder, ContentArray, Index) {
-                var self = this;
-                var _thisMarker = ContentArray[Index];
-                var _thisLat = _thisMarker["lat"];
-                var _thisLng = _thisMarker["lon"];
-                var _thisPosition = {
-                    lat: _thisLat,
-                    lng: _thisLng
+                // Create new dom object
+                var _infoWindow = {
+                    id: _thisId,
+                    address: _thisInfoWindow["place"],
+                    imgPath: MapImgPath + _thisInfoWindow["id"] + ".jpg",
+                    message: _thisInfoWindow["message"]
                 };
-                var latlng = _thisPosition;
-                geocoder.geocode({
-                    'location': latlng
-                }, function(results, status) {
-                    if (status === 'OK') {
-                        if (results[1]) {
 
-                            var _address1 = results[1].formatted_address.replace(", San José, Costa Rica", "");
-                            // Creating _this variables from content array
-                            var _thisMarker = ContentArray[Index];
-                            var _thisId = _thisMarker["id"];
-
-                            var _thisPlace = _thisMarker["place"];
-                            var _thisMessage = _thisMarker["message"];
-                            var _thisPhotoURL = imgPath + _thisId + '.jpg';
-
-                            // Render info window
-                            var _infoWindowContent = '<div class="infoWindow-wrapper close" id="infoWindowId-' + _thisId + '">' +
-                                '<img class="infoWindow-thumb" src="' + _thisPhotoURL + '">' +
-                                '<div class="infoWindow-content">' +
-                                '<div class="infoWindow-place">' +
-                                _thisPlace +
-                                '</div>' +
-                                '<div class="infoWindow-message">' +
-                                _thisMessage +
-                                '</div>' +
-                                '</div>' +
-                                '</div>';
-
-
-                            // Create the info window 
-                            var _infoWindow = new google.maps.InfoWindow({
-                                content: _infoWindowContent
-                            });
-
-                            //Attach info window and marker
-                            self.infowindows.push(_infoWindow);
-
-                            if (Index == ContentArray.length) {
-                                self.renderMarkersAndInfoWindows();
-                            }
-
-
-                        } else {
-                            console.log("Paila, no resultados");
-                        }
-                    } else {
-                        console.log('Geocoder failed due to: ' + status);
-                    }
-                });
+                return _infoWindow;
             },
 
-
-            renderMarkersAndInfoWindows: function() {
-                for (var k = 0; k < this.markers.length; k++) {
-                    google.maps.event.addListener(this.infowindows[k], 'domready', this.updateInfoWindowStyle);
-                    google.maps.event.addListener(this.infowindows[k], 'open', this.updateInfoWindowStyle);
-                }
-            },
-
-
-            removeMarker: function() {
-                this.marker.setMap(null);
-            },
-
-            updateInfoWindowStyle: function() {
-                var gmStyleInfo = document.querySelector(".gm-style-iw").parentElement;
-                var gmStyleX = document.querySelector(".gm-style-iw").parentElement.lastChild;
-                gmStyleInfo.className += gmStyleX.className ? ' infoWindow-parent' : 'infoWindow-parent';
-                gmStyleX.style.display = "none";
-                gmStyleInfo.firstChild.style.display = "none";
-                document.querySelector(".gm-style-iw").firstChild.style.display = "block";
-
-            },
-
-
-
-            stepCarousel: function(List) {
-                var k = this.kRandom;
-                var self = this;
-                try {
-                    var elem = document.getElementById("infoWindowId-" + k);
-                    elem.classList.add("close");
-                    setTimeout(function() {
-                        self.infowindows[k].close();
-                    }, 1500);
-                } catch (e) {
-                    console.log(k)
-                    console.log(document.getElementById("infoWindowId-" + k))
-                    self.infowindows[k].close();
-                }
-
-
-
-                var _k = this.getRandomK(List);
-                var _marker = this.markers[_k];
-                var _infowindow = this.infowindows[_k];
-                var _position = {
-                    lat: List[_k].lat,
-                    lng: List[_k].lon
-                }
-
-                _infowindow.open(this.map, _marker);
-               
-                var elem = document.getElementById("infoWindowId-" + _k);
-                elem.classList.remove("close");
-                
-                 this.updateInfoWindowStyle();
-                this.map.panTo(_position);
-                
-
-            },
-
-
-            getRandomK: function(List) {
-                var n = List.length;
-                var _kRandom = Math.floor(Math.random() * n);
-
-                while (this.kRandom == _kRandom) {
-                    _kRandom = Math.floor(Math.random() * n);
-                }
-
-                this.kRandom = _kRandom;
-
-                return _kRandom;
-            }
 
         }
     };
@@ -407,157 +323,123 @@
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less">
+<style lang="less" scoped>
+    @import "../assets/css/app.less";
+    .map-wrapper {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        background: gray;
+        display: block;
+    }
+
     .google-map {
         width: 100%;
         height: 100%;
         margin: 0 auto;
-        background: gray
+        background: gray;
+        display: block;
     }
 
-    .gm-style-iw {
-        background-color: #D80D45;
-        width: 60vw !important;
-        min-width: fit-content !important;
-        top: 0vh;
-    }
-
-    .infoWindow-parent {
-        background-color: rgba(0, 0, 0, 0) !important;
-        padding: 0px !important;
-        margin: 0px !important;
-        left: -25vw !important;
-        top: -12.5vh !important;
-        max-width: 55vw !important;
-    }
-
-    .infoWindow-wrapper {
-        opacity: 1 !important;
-        width: 100%!important;
-        height: fit-content!important;
-        display: -ms-flexbox!important;
-        display: -webkit-flex!important;
-        display: flex!important;
-        -webkit-flex-direction: row!important;
-        -ms-flex-direction: row!important;
-        flex-direction: row!important;
-        -webkit-flex-wrap: wrap!important;
-        -ms-flex-wrap: wrap!important;
-        flex-wrap: wrap!important;
-        -webkit-justify-content: flex-start!important;
-        -ms-flex-pack: start!important;
-        justify-content: flex-start!important;
-        -webkit-align-content: flex-start!important;
-        -ms-flex-line-pack: start!important;
-        align-content: flex-start!important;
-        -webkit-align-items: center!important;
-        -ms-flex-align: center!important;
-        align-items: center!important;
-        -webkit-transition: opacity 800ms ease-in-out!important;
-        -moz-transition: opacity 800ms ease-in-out!important;
-        -ms-transition: opacity 800ms ease-in-out!important;
-        -o-transition: opacity 800ms ease-in-out!important;
-        transition: opacity 800ms ease-in-out!important;
-    }
-
-    .infoWindow-wrapper.close {
-        opacity: 0 !important;
-        -webkit-transition: opacity 100ms ease-in-out !important;
-        -moz-transition: opacity 100ms ease-in-out!important;
-        -ms-transition: opacity 100ms ease-in-out!important;
-        -o-transition: opacity 100ms ease-in-out!important;
-        transition: opacity 100ms ease-in-out!important;
-    }
-
-
-    .infoWindow-thumb {
-        width: 30%!important
-    }
-
-    .infoWindow-content {
-        width: 70%!important;
-        font-size: 2.85vw;
-        display: -ms-flexbox!important;
-        display: -webkit-flex!important;
-        display: flex!important;
-        -webkit-flex-direction: row!important;
-        -ms-flex-direction: row!important;
-        flex-direction: row!important;
-        -webkit-flex-wrap: wrap!important;
-        -ms-flex-wrap: wrap!important;
-        flex-wrap: wrap!important;
-        -webkit-justify-content: flex-start!important;
-        -ms-flex-pack: start!important;
-        justify-content: flex-start!important;
-        -webkit-align-content: flex-start!important;
-        -ms-flex-line-pack: start!important;
-        align-content: center!important;
-        -webkit-align-items: center!important;
-        -ms-flex-align: center!important;
-        align-items: center!important
-    }
-
-    .infoWindow-place {
-        font-family: "font-light";
-        font-size: 1em;
-        padding-left: 0.5em;
-        padding-right: 0.5em;
-
-        color: white;
-    }
-
-    .infoWindow-message {
-        font-family: "font-bold";
-        font-size: 1em;
-        padding-left: 0.5em;
-        padding-right: 0.5em;
-        text-align: left;
-        color: white;
-    }
-
-
-
-    .infoWindow-close {
-        display: none!important;
-        width: 0px !important;
-        height: 0px!important;
-        overflow: hidden!important;
-        position: absolute!important;
-        right: 0px!important;
-        top: 0px!important;
-        z-index: 0!important;
-        cursor: pointer!important;
-        opacity: 0.7!important;
-
-    }
-
-    .infoWindow-close img {
-        display: none!important;
-    }
-
-
-    @media only screen and (min-width: 600px) {
-
-        .infoWindow-content {
-            width: 70%!important;
-            font-size: 1.25vh;
+    .infoWindows-wrapper {
+        position: absolute;
+        top: 0px;
+        padding-top: 12.5vh;
+        display: block;
+        z-index: 100;
+        .infoWindow-mask {
+            display: block;
+            overflow: hidden;
+            width: 0vh;
+            -webkit-transition: all 400ms ease-in-out;
+            -moz-transition: all 400ms ease-in-out;
+            -ms-transition: all 400ms ease-in-out;
+            -o-transition: all 400ms ease-in-out;
+            transition: all 400ms ease-in-out;
         }
-        .infoWindow-parent {
-            background-color: rgba(0, 0, 0, 0) !important;
-            padding: 0px !important;
-            margin: 0px !important;
-            left: 0px !important;
-            top: -11.5vh !important;
-            max-width: 15vw !important;
+        .infoWindow-mask.opening {
+            width: 30vh;
+            height: 10vh;
+        }
+        .infoWindow-mask.opened {
+            width: 30vh;
+            height: 10vh;
+        }
+        .infoWindow-mask.closing {
+            width: 0vh;
+            height: 10vh;
+
+        }
+        .infoWindow-mask.closed {
+            width: 0vh;
+            height: 10vh;
+
         }
 
-        .gm-style-iw {
-            background-color: #D80D45;
-            width: 30vh!important;
-            min-width: fit-content !important;
-            top: 0vh;
+        li {
+            position: absolute;
+            top: calc(50vh - 21vh);
+            left: 26vw;
         }
+    }
 
+    .infoWindow {
+        display: block;
+        &.block {
+            display: block;
+            width: 30vh;
+            height: 10vh;
+            overflow: hidden;
+            padding: 0px;
+            margin: 0px;
+            text-align: left;
+            .flex-display(flex);
+            .flex-direction(row);
+            .flex-wrap(wrap);
+            .justify-content(center);
+            .align-content(center);
+            .align-items(center);
+        }
+        .thumb {
+            display: inline-block;
+            background-size: cover;
+            width: 10vh;
+            height: 10vh;
+            padding: 0px;
+            margin: 0px;
+        }
+        .message {
+            background-color: #FB0545;
+            display: inline-block;
+            width: 20vh;
+            height: 10vh;
+            padding: 0px;
+            margin: 0px;
+            color: white;
+            font-size: 1.5vh;
+            .flex-direction(row);
+            .flex-wrap(wrap);
+            .justify-content(center);
+            .align-content(center);
+            .align-items(center);
+            h2 {
+                font-family: "font-light";
+                font-size: 1.1em;
+            }
+            h3 {
+                font-family: "font-bold";
+                font-size: 0.90em;
+            }
+        }
+    }
+    
+    @media only screen and (min-width: 768px) {
+        
+        .infoWindows-wrapper {
+            li{
+                
+            }
+        }
     }
 
 </style>

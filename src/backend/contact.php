@@ -99,6 +99,7 @@ try {
     //$mail->addAddress('wallamejorge@hotmail.com');  
     $mail->addReplyTo('contact@autostudio-cr.com');
     $mail->addCC('info@autostudio-cr.com');
+    $mail->addCC('estebanr@thesignlab.co');
     $mail->addCC('wallamejorge@hotmail.com');
 
     $message = file_get_contents('templates/emailAdmissions.html'); 
