@@ -236,7 +236,7 @@
                 if (_state == "opened") {
                     this.loopState = "opened";
                     setTimeout(function() {
-                        self.setLoopState("closing")
+                       self.setLoopState("closing")
                     }, 2500);
                 }
 
@@ -252,7 +252,7 @@
                     setTimeout(function() {
                         console.log("-------------------------------");
                         self.InfoWindowK = self.getRandomK(MapContent);
-                        self.setLoopState("ready")
+                         self.setLoopState("ready")
                         self.loopState = "ready";
                     }, 500);
 
@@ -358,11 +358,11 @@
             transition: all 400ms ease-in-out;
         }
         .infoWindow-mask.opening {
-            width: 30vh;
+            width: 35vh;
             height: 10vh;
         }
         .infoWindow-mask.opened {
-            width: 30vh;
+            width: 35vh;
             height: 10vh;
         }
         .infoWindow-mask.closing {
@@ -377,9 +377,9 @@
         }
 
         li {
-            position: absolute;
-            top: calc(50vh - 21vh);
-            left: 26vw;
+         position: absolute;
+    top: calc(150vh + 59vw);
+    left: calc(50vw - 15vh);
         }
     }
 
@@ -387,12 +387,13 @@
         display: block;
         &.block {
             display: block;
-            width: 30vh;
+            width: 35vh;
             height: 10vh;
             overflow: hidden;
             padding: 0px;
             margin: 0px;
             text-align: left;
+            background-color: #FB0545;
             .flex-display(flex);
             .flex-direction(row);
             .flex-wrap(wrap);
@@ -409,15 +410,15 @@
             margin: 0px;
         }
         .message {
-            background-color: #FB0545;
+            
             display: inline-block;
-            width: 20vh;
-            height: 10vh;
+            width: 25vh;
+            height: auto;
             padding: 0px;
             margin: 0px;
             color: white;
-            font-size: 1.5vh;
-            .flex-direction(row);
+            font-size: 1.55vh;
+            .flex-direction(column);
             .flex-wrap(wrap);
             .justify-content(center);
             .align-content(center);
@@ -425,10 +426,13 @@
             h2 {
                 font-family: "font-light";
                 font-size: 1.1em;
+                padding: 0.5em 1em;
+                padding-top: 0em;
             }
             h3 {
                 font-family: "font-bold";
-                font-size: 0.90em;
+                font-size: 1em;
+                padding-left: 1em;
             }
         }
     }
@@ -437,7 +441,9 @@
         
         .infoWindows-wrapper {
             li{
-                
+                 position: absolute;
+            top: calc(50vh - 21vh);
+            left: 26vw;
             }
         }
     }
