@@ -39,7 +39,7 @@
     import NavbarComponent from '../components/navbar.vue'
     import FooterComponent from '../components/footer.vue'
     import MapComponent from '../components/map.vue'
-    import SocialComponent from '../components/social.vue'
+    import InfoComponent from '../components/info.vue'
     import FormComponent from '../components/form.vue'
     export default {
         name: 'Home',
@@ -59,7 +59,7 @@
             'as-navbar': NavbarComponent,
             'as-map-section': MapComponent,
             'as-footer': FooterComponent,
-            'as-social-section': SocialComponent,
+            'as-info-section': InfoComponent,
             'as-form': FormComponent
         }
     }

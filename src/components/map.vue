@@ -1,70 +1,12 @@
 <template>
     <div class="map-wrapper">
         <div class="google-map" id="AutoStudioMap"></div>
-        <ul id="infoWindow-list" class="infoWindows-wrapper">
-        <li v-for="(item, index) in infowindows">
-        <div v-if="item.id == InfoWindowK" 
-             class="infoWindow-mask" 
-             v-bind:class="loopState">
-            <div class="infoWindow block">
-                <div class="thumb" 
-                     v-bind:style="{ 'background-image': 'url(' + item.imgPath + ')' }">
-                </div>
-                <div class="message">
-                    <h2>{{item.address}}</h2>
-                    <h3>{{item.message}}</h3>
-                </div>
-            </div>
-
-        </div>
-        </li>
-        </ul>
     </div>
 </template>
 
 <script>
     const MapStyleJson = require('../assets/MapStyle.json');
-    const MapContentJson = require('../assets/MapContent.json');
-
-    const MapImgPath = MapContentJson["path"];
-    const MapContent = MapContentJson["contentList"];
-
-    var slowPanTo = function(map, endPosition, n_intervals, T_msec, onFinish) {
-        var f_timeout, getStep, i, j, lat_array, lat_delta, lat_step, lng_array, lng_delta, lng_step, pan, ref, startPosition;
-        getStep = function(delta) {
-            return parseFloat(delta) / n_intervals;
-        };
-        startPosition = map.getCenter();
-        lat_delta = endPosition.lat() - startPosition.lat();
-        lng_delta = endPosition.lng() - startPosition.lng();
-        lat_step = getStep(lat_delta);
-        lng_step = getStep(lng_delta);
-        lat_array = [];
-        lng_array = [];
-        for (i = j = 1, ref = n_intervals; j <= ref; i = j += +1) {
-            lat_array.push(map.getCenter().lat() + i * lat_step);
-            lng_array.push(map.getCenter().lng() + i * lng_step);
-        }
-        f_timeout = function(i, i_min, i_max) {
-            return parseFloat(T_msec) / n_intervals;
-        };
-        pan = function(i) {
-            if (i < lat_array.length) {
-                return setTimeout(function() {
-                    map.panTo(new google.maps.LatLng({
-                        lat: lat_array[i],
-                        lng: lng_array[i]
-                    }));
-                    return pan(i + 1);
-                }, f_timeout(i, 0, lat_array.length - 1));
-            } else {
-                onFinish();
-            }
-        };
-
-        return pan(0);
-    };
-
+   
     export default {
 
         name: 'MapComponent',
@@ -78,31 +20,10 @@
         data() {
             return {
                 msg: 'Map Component',
-                markers: [],
-                infowindows: [],
-                kRandom: 0,
-                InfoWindowK: 0,
-                loopState: "ready"
             }
         },
 
         mounted: function() {
-
-            const self = this;
-
-            this.markerList = [];
-            this.infowindows = [];
-
-            var points = [{
-                        lat: 9.935166,
-                        lng: -84.091349
-                    },
-                    {
-                        lat: 9.922421,
-                        lng: -84.083120
-                    }
-                ],
-                sel_point = 0;
 
             this.map = new google.maps.Map(document.getElementById('AutoStudioMap'), {
                 center: points[sel_point],
@@ -112,11 +33,12 @@
             });
 
             this.map.setOptions({
-                draggable: false,
-                zoomControl: false,
-                scrollwheel: false,
+                draggable: true,
+                zoomControl:true,
+                scrollwheel:true,
                 disableDoubleClickZoom: true
             });
+            
             this.icon = {
                 url: "http://autostudio-cr.com/static/img/gps.png",
                 scaledSize: new google.maps.Size(30, 40),
@@ -125,185 +47,6 @@
                 anchor: new google.maps.Point(0, 0)
             }
 
-            this.addEventsByContentArray(MapContent, MapImgPath);
-
-            
-            this.InfoWindowK = this.getRandomK(MapContent);
-
-            var loop = function() {
-                self.setLoopState("ready");
-            }
-
-            loop();
-
-            /*
-            var k = 0;
-            k = self.getRandomK(MapContent);
-            self.stepCarouselLoop(k);
-            setInterval(function() {
-                if (self.loopState == "ready") {
-                    self.setLoopState("opening");
-                    k = self.getRandomK(MapContent);
-                    self.stepCarouselLoop(k);
-                }
-            },0)
-*/
-
-
-        },
-
-
-        methods: {
-            getRandomK: function(List) {
-                var n = List.length;
-                var _kRandom = Math.floor(Math.random() * n);
-                while (this.kRandom == _kRandom) {
-                    _kRandom = Math.floor(Math.random() * n);
-                }
-                this.kRandom = _kRandom;
-                return _kRandom;
-            },
-            stepCarouselLoop: function(k) {
-
-                var self = this;
-
-                var _marker = this.markers[k];
-                var _position = _marker["position"];
-                var gmLat = _position.lat();
-                var gmLng = _position.lng();
-
-                var gmLatLng = new google.maps.LatLng(gmLat, gmLng);
-
-                var nSteps = 100;
-                var timeSteps = 35;
-                var panningTime = nSteps * timeSteps;
-                var animationTime = 2500;
-                var onFinishPanning = function() {
-
-                    self.setInfoWindowK(k);
-
-                };
-                slowPanTo(this.map, gmLatLng, nSteps, timeSteps, onFinishPanning);
-
-            },
-            setInfoWindowK: function(k) {
-                var self = this;
-                self.InfoWindowK = k;
-            },
-
-            setPanTo: function(callback) {
-                var k = this.InfoWindowK;
-                var _marker = this.markers[k];
-                var _position = _marker["position"];
-                var gmLat = _position.lat();
-                var gmLng = _position.lng();
-                var gmLatLng = new google.maps.LatLng(gmLat, gmLng);
-                slowPanTo(this.map, gmLatLng, 100, 130, callback);
-
-            },
-
-            setLoopState: function(_state, callback) {
-
-                var self = this;
-                console.log("Loop [state:" + _state + "]");
-
-                if (_state == "ready") {
-                    this.loopState = "ready";
-                    this.setLoopState("panningTo");
-                }
-
-                if (_state == "panningTo") {
-                    this.loopState = "panningTo";
-                    var callback = function() {
-                        setTimeout(function(){
-                             self.setLoopState("opening")
-                        },1000)
-                       
-                    }
-                    this.setPanTo(callback);
-                }
-
-                if (_state == "opening") {
-                    this.loopState = "opening";
-                    setTimeout(function() {
-                        self.setLoopState("opened")
-                    }, 1200);
-
-                }
-
-                if (_state == "opened") {
-                    this.loopState = "opened";
-                    setTimeout(function() {
-                       self.setLoopState("closing")
-                    }, 2500);
-                }
-
-                if (_state == "closing") {
-                    this.loopState = "closing";
-                    setTimeout(function() {
-                        self.setLoopState("closed")
-                    }, 1200);
-                }
-
-                if (_state == "closed") {
-                    this.loopState = "closed";
-                    setTimeout(function() {
-                        console.log("-------------------------------");
-                        self.InfoWindowK = self.getRandomK(MapContent);
-                         self.setLoopState("ready")
-                        self.loopState = "ready";
-                    }, 500);
-
-
-                }
-
-
-
-
-
-            },
-            addEventsByContentArray: function(ContentArray, ImagesPath) {
-                var _thisMarker = null;
-                var _thisInfoWindow = null;
-                for (var k = 0; k < ContentArray.length; k++) {
-                    _thisMarker = this.getMakerByContentArrayIndex(ContentArray, k);
-                    this.markers.push(_thisMarker);
-                    _thisInfoWindow = this.getInfoWindowByContentArrayIndex(ContentArray, ImagesPath, k);
-                    this.infowindows.push(_thisInfoWindow);
-                }
-            },
-            getMakerByContentArrayIndex: function(ContentArray, Index) {
-                var _thisMarker = ContentArray[Index];
-                var _thisId = _thisMarker["id"];
-                var _thisLat = _thisMarker["lat"];
-                var _thisLng = _thisMarker["lon"];
-                var _thisPosition = {
-                    lat: _thisLat,
-                    lng: _thisLng
-                };
-                // Create new google map marker
-                var _marker = new google.maps.Marker({
-                    position: _thisPosition,
-                    map: this.map,
-                    icon: this.icon,
-                    title: 'AutoStudio!'
-                });
-                return _marker;
-            },
-            getInfoWindowByContentArrayIndex: function(ContentArray, MapImgPath, Index) {
-                var _thisInfoWindow = ContentArray[Index];
-                var _thisId = _thisInfoWindow["id"];
-
-                // Create new dom object
-                var _infoWindow = {
-                    id: _thisId,
-                    address: _thisInfoWindow["place"],
-                    imgPath: MapImgPath + _thisInfoWindow["id"] + ".jpg",
-                    message: _thisInfoWindow["message"]
-                };
-
-                return _infoWindow;
-            },
 
 
         }
