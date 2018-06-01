@@ -112,7 +112,7 @@ try {
     $mail->send();
     
     
-    echo "Pronto nos contactaremos contigo ";
+
 
 } catch (Exception $e) {
     echo 'Message could not be sent.';

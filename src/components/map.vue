@@ -6,7 +6,6 @@
 
 <script>
     const MapStyleJson = require('../assets/MapStyle.json');
-   
     export default {
 
         name: 'MapComponent',
@@ -20,26 +19,33 @@
         data() {
             return {
                 msg: 'Map Component',
+                position: null
             }
         },
 
         mounted: function() {
 
+            var self = this;
+            this.autoStudio_Address = new google.maps.LatLng(9.927366, -84.146810);
+            this.user_Address = new google.maps.LatLng(9.934739, -84.087502);
+
+            this.positionDefault = new google.maps.LatLng(9.934739, -84.087502);
+
             this.map = new google.maps.Map(document.getElementById('AutoStudioMap'), {
-                center: points[sel_point],
+                center: this.user_Address,
                 scrollwheel: false,
-                zoom: 16,
+                zoom: 12.25,
                 styles: MapStyleJson
             });
 
             this.map.setOptions({
                 draggable: true,
-                zoomControl:true,
-                scrollwheel:true,
+                zoomControl: true,
+                scrollwheel: true,
                 disableDoubleClickZoom: true
             });
-            
-            this.icon = {
+
+            this.icon_gps = {
                 url: "http://autostudio-cr.com/static/img/gps.png",
                 scaledSize: new google.maps.Size(30, 40),
                 /*scaledSize: new google.maps.Size(50, 50),*/
@@ -47,9 +53,60 @@
                 anchor: new google.maps.Point(0, 0)
             }
 
+            this.icon_car = {
+                url: "http://autostudio-cr.com/static/img/carrogps.png",
+                scaledSize: new google.maps.Size(50, 50),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 0)
+            }
+
+            this.marker_Car = new google.maps.Marker({
+                position: this.autoStudio_Address,
+                map: this.map,
+                icon: this.icon_car,
+                title: 'Hello World!'
+            });
+
+
+            this.marker_User = new google.maps.Marker({
+                position: this.user_Address,
+                map: this.map,
+                icon: this.icon_gps,
+                title: 'Hello World!'
+            });
+
+
+            this.updateCurrentPostion();
+
+
+
+        },
+        methods: {
+
+            updateCurrentPostion: function() {
+                var self = this;
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        }; 
+                        var mylatLng = new google.maps.LatLng(pos.lat, pos.lng);
+                         self.marker_User.setPosition(mylatLng);
+                         self.map.setCenter(mylatLng);
+                        
+                    });
+                    
+                } else {
+                    self.marker_User.setPosition(self.positionDefault);
+                }
+            }
 
 
         }
+
     };
 
 </script>
@@ -118,9 +175,9 @@
         }
 
         li {
-         position: absolute;
-    top: calc(150vh + 59vw);
-    left: calc(50vw - 15vh);
+            position: absolute;
+            top: calc(150vh + 59vw);
+            left: calc(50vw - 15vh);
         }
     }
 
@@ -151,7 +208,7 @@
             margin: 0px;
         }
         .message {
-            
+
             display: inline-block;
             width: 25vh;
             height: auto;
@@ -171,21 +228,21 @@
                 padding-top: 0em;
             }
             h3 {
-               
-                 font-family: "font-light";
+
+                font-family: "font-light";
                 font-size: 1em;
                 padding-left: 1em;
             }
         }
     }
-    
+
     @media only screen and (min-width: 768px) {
-        
+
         .infoWindows-wrapper {
-            li{
-                 position: absolute;
-            top: calc(50vh - 21vh);
-            left: 26vw;
+            li {
+                position: absolute;
+                top: calc(50vh - 21vh);
+                left: 26vw;
             }
         }
     }

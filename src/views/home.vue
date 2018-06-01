@@ -6,8 +6,8 @@
         
         <div class="wrapper">
             
-            <div class="col">
-               <as-social-section v-bind:lang="appLang"></as-social-section>
+            <div class="col info">
+               <as-info-section v-bind:lang="appLang"></as-info-section>
             </div>
             
             <div class="float">
@@ -90,11 +90,13 @@
             height: auto;
             .col {
                 width: 100%;
-                height: 80vh;
+               height: 80vh;            
             }
 
             .col:first-child {
                 order: 1;
+                 min-height: 80vh;
+                height: fit-content;
             }
             .col:last-child {
                 order: 3;
@@ -144,6 +146,9 @@
 
                 .col:first-child {
                     order: 1;
+                        min-height: 80vh;
+    height: 80vh;
+                    
                 }
                 .col:last-child {
                     order: 2;
