@@ -90,12 +90,12 @@
             height: auto;
             .col {
                 width: 100%;
-               height: 80vh;            
+                height: 80vh;
             }
 
             .col:first-child {
                 order: 1;
-                 min-height: 80vh;
+                min-height: 80vh;
                 height: fit-content;
             }
             .col:last-child {
@@ -137,28 +137,45 @@
                 height: 12.5vh;
             }
             .wrapper {
-                width: 100vw;
-                height: 80vh;
+                position: absolute;
+                top: 0px;
+                height: calc(100vh - 12.5vh - 20vh);
+                margin-top: 12.5vh;
+                margin-bottom: 20vh;
+                    background-color: #F2F2F2;
                 .col {
                     width: 50%;
-                    height: 80vh;
+                    height: 100%;
+                    min-height: 0%;
+
+                }
+                .col.info{
+                        background-color: #F2F2F2;
+                    height: 100%;
                 }
 
                 .col:first-child {
                     order: 1;
-                        min-height: 80vh;
-    height: 80vh;
-                    
+                    min-height: 0%;
+
                 }
                 .col:last-child {
                     order: 2;
+                    min-height: 0%;
                 }
 
                 .float {
                     order: 3;
                     z-index: 500;
                     position: absolute;
-                    top: calc(50vh - 30%);
+                    top: 0px;
+                    height: 100%;
+                    .flex-display(flex);
+                .flex-direction(column);
+                .flex-wrap(wrap);
+                .justify-content(center);
+                .align-content(center);
+                .align-items(center);
                 }
                 .flex-display(flex);
                 .flex-direction(row);
@@ -170,6 +187,8 @@
             .footer {
                 width: 100vw;
                 height: 20vh;
+                position: absolute;
+                bottom: 0px;
             }
             .flex-display(flex);
             .flex-direction(row);
@@ -181,7 +200,7 @@
     }
 
 
-    
+
 
 
     @media only screen and (min-width: 1440px) {
@@ -189,14 +208,23 @@
             .wrapper {
                 .float {
                     order: 3;
+                    
                     z-index: 500;
                     position: absolute;
-                    top: calc(50vh - 22%);
+                    top: 0px;
+                    height: 100%;
+                    .flex-display(flex);
+                .flex-direction(column);
+                .flex-wrap(wrap);
+                .justify-content(center);
+                .align-content(center);
+                .align-items(center); z-index: 500;
+                    position: absolute;
+                    top: 0px;
                 }
             }
         }
-        
+
     }
 
-    
 </style>
