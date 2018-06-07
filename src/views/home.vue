@@ -130,7 +130,7 @@
 
     /*Desktop Format*/
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width:800px) {
         .view {
             .navbar {
                 width: 100vw;

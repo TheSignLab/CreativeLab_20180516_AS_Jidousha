@@ -185,7 +185,7 @@
 
     /*Desktop Format*/
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 800px) {
         footer {
             font-family: 'font-light';
             background-image: url(../assets/img/Bg_Texture.png);

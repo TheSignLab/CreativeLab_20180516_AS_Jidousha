@@ -347,16 +347,16 @@ table {
   src: local('font-ultra'), url("../fonts/MullerUltra.otf") format("opentype");
 }
 @font-face {
-  font-weight: bold;
+  font-weight: normal;
   font-style: italic;
   font-family: 'font-futura-italic';
-  src: local('font-futura-italic'), url("../fonts/FuturaOblique.woff2") format('woff2');
+  src: local('font-futura-italic'), url("../fonts/FuturaOblique.otf") format("opentype");
 }
 @font-face {
-  font-weight: bold;
+  font-weight: 800;
   font-style: italic;
   font-family: 'font-futura-bold-italic';
-  src: local('font-futura-bold-italic'), url("../fonts/FuturaBoldOblique.woff2") format('woff2');
+  src: local('font-futura-bold-italic'), url("../fonts/FuturaLTBoldOblique.otf") format("opentype");
 }
 @font-face {
   font-weight: normal;
