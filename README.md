@@ -1,6 +1,6 @@
-# autostudio-landing-webapp
+# autostudio-pwa
 
-> Landing web app for car tracking and service booking for Auto Studio Company
+> PWA App para diagnostico  y solucitudes de reparación de camanances en San José, Costa Rica.
 
 ## Build Setup
 
@@ -27,4 +27,4 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
