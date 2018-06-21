@@ -7,11 +7,13 @@
             </div>
         </div>
         <div class="row bottom">
-            <div class="tab">
-                <img class="" src="../assets/img/navbar/home.png">
+            <div class="tab active">
+                <img class="active" src="../assets/img/navbar/tab_home_active.svg">
+                <img class="default" src="../assets/img/navbar/tab_home_default.svg">
             </div>
             <div class="tab">
-                <img class="" src="../assets/img/navbar/service.png">
+                <img class="active" src="../assets/img/navbar/tab_home_active.svg">
+                <img class="default"  src="../assets/img/navbar/tab_home_default.svg">
             </div>
         </div>
     </nav>
