@@ -1,5 +1,5 @@
 {
-  "name": "autostudio-pwa",
+  "name": "autostudio",
   "short_name": "AutoStudio PWA",
   "icons": [
     {
@@ -15,6 +15,6 @@
   ],
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "background_color": "#182b7e",
+  "theme_color": "#182b7e"
 }
