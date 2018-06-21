@@ -2,11 +2,12 @@
   <div id="home">
       
       <div class="img-top">
-        <img src="../assets/img/info/home.png">
+        <img src="../assets/img/info/home.png" alt="AutoStudio, Su Auto en las mejores manos">
       </div>
       
       <div class="img-text">
-        <img src="../assets/img/info/text.svg">
+        <img src="../assets/img/info/text.svg" alt="Autostudio, Autostudio le trae el sistema más avanzado de reparación exprés de su auto.
+Contacte uno de nuestros vehículos y descubra como está de regreso a la calle en tiempo récord.">
       </div>
 
   </div>

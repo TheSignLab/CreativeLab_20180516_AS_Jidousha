@@ -3,17 +3,17 @@
     <nav>
         <div class="row top">
             <div class="circle">
-                <img class="" src="../assets/img/navbar/profile.png">
+                <img class="" src="../assets/img/navbar/profile.png" alt="AutoStudio Tab">
             </div>
         </div>
         <div class="row bottom">
             <div class="tab active">
-                <img class="active" src="../assets/img/navbar/tab_home_active.svg">
+                <img class="active" src="../assets/img/navbar/tab_home_active.svg" alt="AutoStudio Tab">
                <!-- <img class="default" src="../assets/img/navbar/tab_home_default.svg"> -->
             </div>
             <div class="tab">
                <!-- <img class="active" src="../assets/img/navbar/tab_home_active.svg">-->
-                <img class="default"  src="../assets/img/navbar/tab_home_default.svg">
+                <img class="default"  src="../assets/img/navbar/tab_home_default.svg" alt="AutoStudio Tab">
             </div>
         </div>
     </nav>
