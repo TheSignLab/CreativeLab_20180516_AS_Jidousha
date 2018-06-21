@@ -9,10 +9,10 @@
         <div class="row bottom">
             <div class="tab active">
                 <img class="active" src="../assets/img/navbar/tab_home_active.svg">
-                <img class="default" src="../assets/img/navbar/tab_home_default.svg">
+               <!-- <img class="default" src="../assets/img/navbar/tab_home_default.svg"> -->
             </div>
             <div class="tab">
-                <img class="active" src="../assets/img/navbar/tab_home_active.svg">
+               <!-- <img class="active" src="../assets/img/navbar/tab_home_active.svg">-->
                 <img class="default"  src="../assets/img/navbar/tab_home_default.svg">
             </div>
         </div>
