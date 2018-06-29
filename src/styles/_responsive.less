@@ -2,6 +2,24 @@
 // -- Responsive Layout/Stylesheet for AutoStudio-cr.com       //
 // ----------------------------------------------------------- //
 
-@whenMobile  : ~ "@media only screen and (max-width: 0px)";
-@whenTablet : ~"@media only screen and (max-width: 600px)";
-@whenDesktop : ~"@media only screen and (max-width: 1000px)";
+@whenMobile  : ~ "@media only screen";
+@whenDesktop : ~"@media only screen and (min-width: 1000px)";
+
+
+
+
+
+.device.desktop{
+  display: inherit;
+}
+.device.mobile{
+  display:none;
+}
+@media (max-width: 1000px) {
+  .device.mobile{
+    display: inherit;
+  }
+  .device.desktop{
+    display:none;
+  }
+}
