@@ -11,7 +11,6 @@
 
         <div class="cover">
           <img class="img-bottom" src="../assets/img/info-bg-color-01.png">
-
         </div>
 
         <div class="description">
