@@ -11,3 +11,28 @@
   transform: translateY(-100vh);
   opacity: 1;
 }
+
+.slide-left-leave-active,
+.slide-left-enter-active {
+  transition: all 0.5s ease;
+}
+.slide-left-enter {
+  transform: translate(-100%, 0);
+}
+.slide-left-leave-to {
+  transform: translate(-100%, 0);
+}
+
+.slide-right-leave-active,
+.slide-right-enter-active {
+  transition: 0.5s;
+  transition: all 0.5s ease;
+}
+.slide-right-enter {
+  transform: translate(-100%, 0);
+  opacity: 1;
+}
+.slide-right-leave-to {
+  transform: translate(-100%, 0);
+  opacity: 1;
+}

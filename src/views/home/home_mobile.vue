@@ -56,6 +56,7 @@
 .container{
   height: @container-h;
   width: @header-w;
+  overflow: hidden;
 }
 .navigator{
   height: @nav-h;

@@ -30,4 +30,5 @@ export default {
 
 <style lang="less">
     @import "./styles/main.less";
+    @import "./styles/reset.less";
 </style>
