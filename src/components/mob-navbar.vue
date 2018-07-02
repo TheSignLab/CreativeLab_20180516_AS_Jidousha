@@ -21,5 +21,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="less">
+.tabs {
+  display: block;
+  .tab {
+    display: inline-block;
+    width: 100vw;
+  }
+}
 </style>
