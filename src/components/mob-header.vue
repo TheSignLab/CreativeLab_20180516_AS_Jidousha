@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'mob-heade',
+  name: 'mob-header',
   data () {
     return {
       componentState: 's'

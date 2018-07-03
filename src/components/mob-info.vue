@@ -11,7 +11,7 @@
 
       <div class="content about">
         <div class="cover">
-          <img class="img-bottom" src="../assets/img/info-bg-color-01.png">
+          <img class="img-car" src="../assets/img/mobile-car-autostudio.png">
         </div>
         <div class="description">
           <h1>
@@ -25,7 +25,7 @@
           </p>
         </div>
       </div>
-    
+
       <div class="content contact">
         <h1> AutoStudio! </h1>
         <img class="contact-cover">
@@ -82,12 +82,16 @@ export default {
   .tab {
     width: 50%;
     display: inline-block;
+    font-family: 'font-light';
+    font-weight: '100';
     color: @color-dark-gray;
     text-align: center;
     box-sizing: border-box;
     padding: 5% 0%;
+    border-bottom: 1px solid rgba(0,0,0,0);
     &.active {
       color: @color-red;
+      border-bottom: 1px solid  @color-red;
     }
   }
 }
@@ -112,11 +116,12 @@ export default {
     display: inline-block;
     width: 100vw;
     height: auto;
+    overflow: hidden;
   }
 }
 .cover {
   display: block;
-  background-color: @color-blue;
+  background-color: rgba(0,0,0,0);
   width: 100vw;
   height: 75vw;
   background-size: cover;
