@@ -5,16 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    todos: []
+    mobActiveTab : ''
+  },
+  getters:{
+    currentMobTab: state => state.mobActiveTab
   },
   mutations: {
-    addTodo (state, text) {
-      state.todos.push({
-        text
-      })
-    },
-    removeTodo (state, todo) {
-      state.todos.splice(state.todos.indexOf(todo), 1)
+    UPDATE_NAVTAB(state, tabName){
+      state.mobActiveTab = tabName
+    }
+  },
+  actions: {
+    update_navTab({commit}, tabName){
+      commit('UPDATE_NAVTAB', tabName)
     }
   }
 })
