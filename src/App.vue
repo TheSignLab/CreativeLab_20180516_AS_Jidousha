@@ -8,27 +8,27 @@
 </template>
 
 <script>
-import PreloaderComponent from './components/preloader.vue'
+import PreloaderComponent from "./components/preloader.vue";
 export default {
-  name: 'mm-app-autostudio',
-  data () {
+  name: "mm-app-autostudio",
+  data() {
     return {
       isReady: false
-    }
+    };
   },
-  mounted () {
-    var self = this
-    setTimeout(function () {
-      self.isReady = true
-    }, 2500)
+  mounted() {
+    var self = this;
+    setTimeout(function() {
+      self.isReady = true;
+    }, 0);
   },
   components: {
-    'preloader': PreloaderComponent
+    preloader: PreloaderComponent
   }
-}
+};
 </script>
 
 <style lang="less">
-    @import "./styles/main.less";
-    @import "./styles/reset.less";
+@import "./styles/main.less";
+@import "./styles/reset.less";
 </style>

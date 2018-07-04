@@ -1,21 +1,22 @@
 <template>
 <div class="wrapper">
   <div class="profile-icon">
-    <img class="icon" src="../assets/img/navbar/profile.png" alt="">
+     <img class="icon" src="../assets/img/navbar/profile.png" alt="">
   </div>
   <div class="tabs">
-    <div class="tab info" @click="updateTab('info')">
-      info 
+    <div class="tab info" @click="updateTab('info')" v-bind:class="{ active: $store.state.mobActiveTab=='info'}">
+      <img src="../assets/img/navbar/tab-info-icon-active.png" v-if="$store.state.mobActiveTab=='info'">
+      <img src="../assets/img/navbar/tab-info-icon-default.png" v-if="$store.state.mobActiveTab!='info'">
     </div>
-    <div class="tab service" @click="updateTab('service')"> 
-      service
+    <div class="tab service" @click="updateTab('service')" v-bind:class="{ active: $store.state.mobActiveTab=='service' }">
+       <img src="../assets/img/navbar/tab-service-icon-active.png" v-if="$store.state.mobActiveTab=='service'">
+      <img src="../assets/img/navbar/tab-service-icon-default.png" v-if="$store.state.mobActiveTab!='service'">
     </div>
   </div>
 </div>
 </template>
 
 <script>
-
 export default {
   name: "mob-navbar",
   data() {
@@ -24,37 +25,39 @@ export default {
     };
   },
   mounted() {
-    this.updateTab('info');
+    this.updateTab("info");
   },
   methods: {
     updateTab(tabName) {
-      this.$store.dispatch('update_navTab',tabName)
+      this.$store.dispatch("update_navTab", tabName);
     }
   }
 };
 </script>
 
 <style scoped lang="less">
-@import "../styles/main.less";
-.wrapper{
+@import (reference) "../styles/main.less";
+.wrapper {
   height: 100%;
   width: 100%;
 }
-.profile-icon,.tabs{
-position: absolute;
-bottom: 0px;
-height: 17.5vw;
+.profile-icon,
+.tabs {
+  position: absolute;
+  bottom: 0px;
+  height: 17.5vw;
 }
-.profile-icon{
+.profile-icon {
   height: 35vw;
-      left: calc(50% - 10vw);
-  img{
+  left: calc(50% - 10vw);
+  z-index: 10;
+  img {
     height: 100%;
   }
 }
 .tabs {
   display: block;
-  
+
   .flex-display(flex);
   .flex-direction(row);
   .flex-wrap(wrap);
@@ -63,11 +66,28 @@ height: 17.5vw;
   .align-items(center);
 
   .tab {
+    z-index: 5;
     display: inline-block;
     width: 50vw;
     height: 100%;
-    background-color: @color-gray;
+    box-sizing: border-box;
+    background-color: @color-white;
+    border: 1px solid @color-gray;
     text-align: center;
+    &.active {
+      border-bottom: 1px solid @color-red;
+    }
+    .flex-display(flex);
+    .flex-direction(column);
+    .flex-wrap(wrap);
+    .justify-content(center);
+    .align-content(center);
+    .align-items(center);
+    img {
+      display: block;
+      margin: 0 auto;
+      height: 50%;
+    }
   }
 }
 </style>

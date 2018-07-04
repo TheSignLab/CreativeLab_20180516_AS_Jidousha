@@ -4,7 +4,6 @@
       <mob-header></mob-header>
     </div>
     <div class="container">
-      <h1>{{ $store.state.mobActiveTab }}</h1>
       <mob-info ></mob-info>
       <mob-service></mob-service>
     </div>
@@ -27,14 +26,12 @@ export default {
     "mob-info": InfoComponent,
     "mob-service": ServiceComponent
   },
-  methods: {
-
-  }
+  methods: {}
 };
 </script>
 
 <style lang="less">
-@import "../../styles/main.less";
+@import (reference) "../../styles/main.less";
 
 @header-h : 20vw;
 @header-w : 100vw;

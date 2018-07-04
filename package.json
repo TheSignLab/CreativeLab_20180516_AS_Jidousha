@@ -14,8 +14,12 @@
   },
   "dependencies": {
     "vue": "^2.5.2",
+    "vue-gesture": "^2.0.0",
+    "vue-gestures": "0.0.2",
     "vue-preload": "^0.1.11",
     "vue-router": "^3.0.1",
+    "vue-touch": "^2.0.0-beta.4",
+    "vue2-touch": "^1.0.7",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

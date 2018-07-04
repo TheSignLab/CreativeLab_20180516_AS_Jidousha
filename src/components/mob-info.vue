@@ -9,14 +9,15 @@
 
     <div class="contents" v-bind:style="{ transform: 'translateX(' + tabPosX + ')' }">
 
+      <v-touch @swipeleft="setTab('contact')">
       <div class="content about">
         <div class="cover">
-          <img class="img-car" src="../assets/img/mobile-car-autostudio.png">
+         <img class="img-car" src="../assets/img/mob-info/car-obj.png">
         </div>
         <div class="description">
           <h1>
-            <span class="">SU AUTO</span>
-            <span class="">EN LAS MEJORES MANOS</span>
+            <span class="f-light">SU AUTO</span>
+            <span class="f-bold">EN LAS MEJORES MANOS</span>
           </h1>
           <p>
             <span class="f-bold">Autostudio</span> le trae el sistema más avanzado
@@ -25,17 +26,20 @@
           </p>
         </div>
       </div>
+      </v-touch>
 
-      <div class="content contact">
-        <h1> AutoStudio! </h1>
-        <img class="contact-cover">
-        <ul class="contact-info">
-          <li>Telefono : </li>
-          <li>Correo : </li>
-          <li>Web : </li>
-          <li>Facebook : </li>
-        </ul>
-      </div>
+      <v-touch @swiperight="setTab('about')">
+            <div class="content contact">
+
+              <img class="contact-cover" src="../assets/img/mob-info/contact-img.png" width="100%" alt="AutoStudio! Con Nosotros">
+              <ul class="contact-info">
+              <li>Telefono : </li>
+              <li>Correo : </li>
+              <li>Web : </li>
+              <li>Facebook : </li>
+              </ul>
+            </div>
+      </v-touch>
 
     </div>
 
@@ -59,13 +63,16 @@ export default {
         this.tabPosX = "-100vw";
       }
       this.tabName = currentTab;
+    },
+    setTabBySwipe(str, e) {
+      console.log(str);
     }
   }
 };
 </script>
 
 <style lang="less" scoped>
-@import "../styles/main.less";
+@import (reference) "../styles/main.less";
 .tabs {
   display: block;
   width: 100vw;
@@ -82,16 +89,16 @@ export default {
   .tab {
     width: 50%;
     display: inline-block;
-    font-family: 'font-light';
-    font-weight: '100';
+    font-family: "font-light";
+    font-weight: "100";
     color: @color-dark-gray;
     text-align: center;
     box-sizing: border-box;
     padding: 5% 0%;
-    border-bottom: 1px solid rgba(0,0,0,0);
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
     &.active {
       color: @color-red;
-      border-bottom: 1px solid  @color-red;
+      border-bottom: 1px solid @color-red;
     }
   }
 }
@@ -105,7 +112,7 @@ export default {
   .flex-wrap(nowrap);
   .justify-content(center);
   .align-content(center);
-  .align-items(center);
+  .align-items(flex-start);
 
   -webkit-transition: all 500ms ease-in-out;
   -moz-transition: all 500ms ease-in-out;
@@ -119,20 +126,57 @@ export default {
     overflow: hidden;
   }
 }
-.cover {
+.about .cover {
   display: block;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   width: 100vw;
-  height: 75vw;
+  height: 60vw;
   background-size: cover;
   background-position: center;
-  .img-bottom {
+  background-image: url("../assets/img/mob-info/car-bg.png");
+
+  .flex-display(flex);
+  .flex-direction(column);
+  .flex-wrap(nowrap);
+  .justify-content(flex-end);
+  .align-content(center);
+  .align-items(center);
+
+  img {
     display: block;
+    width: 80%;
   }
 }
 .description {
   display: block;
+  font-family: "font-light";
+  box-sizing: border-box;
+  padding: 0px 10vw;
   width: 100vw;
   height: 50vw;
+  h1 {
+    color: @color-red;
+    display: block;
+    font-size: 1.5em;
+    margin: 0.5em 0em;
+  }
+  p {
+    color: @color-black;
+  }
+}
+
+ul.contact-info {
+  width: 70%;
+  margin: 0 auto;
+  background-color: @color-gray;
+  height: 100%;
+  position: relative;
+  top: -5vh;
+  margin: 0% 5%;
+  padding: 5% 5%;
+  li {
+    margin: 5%;
+    display: block;
+  }
 }
 </style>
