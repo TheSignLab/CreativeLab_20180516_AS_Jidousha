@@ -30,13 +30,13 @@
 
       <v-touch @swiperight="setTab('about')">
             <div class="content contact">
-
-              <img class="contact-cover" src="../assets/img/mob-info/contact-img.png" width="100%" alt="AutoStudio! Con Nosotros">
-              <ul class="contact-info">
-              <li>Telefono : </li>
-              <li>Correo : </li>
-              <li>Web : </li>
-              <li>Facebook : </li>
+<div class="img-contanct-cover">
+              <img class="contact-cover" src="../assets/img/mob-info/contact-img.png"  alt="AutoStudio! Con Nosotros">
+              </div><ul class="contact-info">
+              <li> <img src="../assets/img/mob-info/contact-call.png">506 72053596</li>
+              <li>  <img src="../assets/img/mob-info/contact-email.png">info@autostudio-cr.com
+ </li>
+              <li>  <img src="../assets/img/mob-info/contact-facebook.png">Autostudio </li>
               </ul>
             </div>
       </v-touch>
@@ -105,7 +105,7 @@ export default {
 .contents {
   display: block;
   width: 200vw;
-  height: auto;
+  height: 100vh;
 
   .flex-display(flex);
   .flex-direction(row);
@@ -122,7 +122,7 @@ export default {
   .content {
     display: inline-block;
     width: 100vw;
-    height: auto;
+    height: 100vh;
     overflow: hidden;
   }
 }
@@ -153,7 +153,13 @@ export default {
   box-sizing: border-box;
   padding: 0px 10vw;
   width: 100vw;
-  height: 50vw;
+  height: calc(100vh - 50vw - 65vw);
+  .flex-display(flex);
+  .flex-direction(column);
+  .flex-wrap(nowrap);
+  .justify-content(center);
+  .align-content(center);
+  .align-items(center);
   h1 {
     color: @color-red;
     display: block;
@@ -164,19 +170,52 @@ export default {
     color: @color-black;
   }
 }
-
+.contact {
+  background-color: white;
+}
 ul.contact-info {
   width: 70%;
   margin: 0 auto;
-  background-color: @color-gray;
-  height: 100%;
+  background-color: #f2f2f2;
+  height: calc(100vh - 150vw);
   position: relative;
-  top: -5vh;
-  margin: 0% 5%;
+  top: -0vh;
   padding: 5% 5%;
+  border: 0px;
+  .flex-display(flex);
+  .flex-direction(column);
+  .flex-wrap(nowrap);
+  .justify-content(center);
+  .align-content(center);
+  .align-items(center);
+
   li {
     margin: 5%;
+    padding: 5%;
+    width: 100%;
+    border-bottom: 1px solid @color-gray;
     display: block;
+    font-family: "font-light";
+    .flex-display(flex);
+    .flex-direction(row);
+    .flex-wrap(nowrap);
+    .justify-content(flex-start);
+    .align-content(center);
+    .align-items(center);
+    img {
+      display: inline;
+      height: 1.5em;
+      margin-right: 5%;
+    }
   }
+}
+.img-contanct-cover {
+  width: 100vw;
+  height: 40vh;
+}
+.contact-cover {
+  display: block;
+  width: 100vw;
+  object-fit: cover;
 }
 </style>
