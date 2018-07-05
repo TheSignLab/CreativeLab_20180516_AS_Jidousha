@@ -33,7 +33,7 @@ export default {
 <style lang="less">
 @import (reference) "../../styles/main.less";
 
-@header-h : 20vw;
+@header-h : 7.5vh;
 @header-w : 100vw;
 
 @nav-h : @header-h;
@@ -56,11 +56,14 @@ export default {
 }
 .container {
   height: @container-h;
+  height: 100vh;
   width: @header-w;
   overflow: hidden;
 }
 .navigator {
   height: @nav-h;
   width: @nav-w;
+  position: fixed;
+  bottom: 0px;
 }
 </style>

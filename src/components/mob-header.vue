@@ -7,26 +7,26 @@
 
 <script>
 export default {
-  name: 'mob-header',
-  data () {
+  name: "mob-header",
+  data() {
     return {
-      componentState: 's'
-    }
+      componentState: "s"
+    };
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
 @import "../styles/main.less";
 .wrapper {
-   width: 100vw;
-   height: 100%;
+  width: 100vw;
+  height: 100%;
 
-   box-sizing: border-box;
+  box-sizing: border-box;
 
-   padding: 10%;
+  padding: 2vh;
 
-   background-color: @color-white;
+  background-color: @color-white;
 
   border-bottom: 0.1vw solid @color-dark-gray;
 
@@ -38,11 +38,11 @@ export default {
   .align-items(center);
 }
 .logo {
-  width: 50%;
+  width: 30%;
   margin: 0 auto;
   .align-self(center);
 }
 .question {
-  width: 7.5%;
+  width: 4%;
 }
 </style>

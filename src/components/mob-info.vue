@@ -91,10 +91,11 @@ export default {
     display: inline-block;
     font-family: "font-light";
     font-weight: "100";
+    font-size: 0.75em;
     color: @color-dark-gray;
     text-align: center;
     box-sizing: border-box;
-    padding: 5% 0%;
+    padding: 3.5% 0%;
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     &.active {
       color: @color-red;
@@ -180,7 +181,7 @@ ul.contact-info {
   height: calc(100vh - 150vw);
   position: relative;
   top: -0vh;
-  padding: 5% 5%;
+  padding: 10% 5%;
   border: 0px;
   .flex-display(flex);
   .flex-direction(column);
