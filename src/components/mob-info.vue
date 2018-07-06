@@ -176,12 +176,13 @@ export default {
 }
 ul.contact-info {
   width: 70%;
+  min-height: fit-content;
   margin: 0 auto;
   background-color: #f2f2f2;
   height: calc(100vh - 150vw);
   position: relative;
   top: -0vh;
-  padding: 10% 5%;
+  padding: 5% 5%;
   border: 0px;
   .flex-display(flex);
   .flex-direction(column);
@@ -192,7 +193,7 @@ ul.contact-info {
 
   li {
     margin: 5%;
-    padding: 5%;
+    padding: 0%;
     width: 100%;
     border-bottom: 1px solid @color-gray;
     display: block;
