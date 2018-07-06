@@ -1,84 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> AutoStudio | Reparación Exprés de Camamances y Parabrisas en San José, Costa Rica. </title>
-    <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-16x16.png">
-    <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
-    <!-- Add to home screen for Android and modern mobile browsers -->
-    <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/site.webmanifest?v=dLmNP8PXae">
-    <meta name="theme-color" content="#182b7e">
 
-    <!-- Add to home screen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="AutoStudio">
-    <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/apple-touch-icon-152x152.png">
-    <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/safari-pinned-tab.svg" color="#4DBA87">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> AutoStudio | Reparación Exprés de Camamances y Parabrisas en San José, Costa Rica. </title>
+  <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-16x16.png">
+  <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
+  <!-- Add to home screen for Android and modern mobile browsers -->
+  <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/site.webmanifest?v=dLmNP8PXae">
+  <meta name="theme-color" content="#182b7e">
 
-    <!-- Add to home screen for Windows -->
-    <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/msapplication-icon-144x144.png">
-    <meta name="msapplication-TileColor" content="#000000">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AutoStudio">
+  <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/apple-touch-icon-152x152.png">
+  <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/safari-pinned-tab.svg" color="#4DBA87">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="<%= htmlWebpackPlugin.files.publicPath %>static/apple-touch-icon.png?v=dLmNP8PXae">
-    <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/favicon-32x32.png?v=dLmNP8PXae">
-    <link rel="icon" type="image/png" sizes="194x194" href="<%= htmlWebpackPlugin.files.publicPath %>static/favicon-194x194.png?v=dLmNP8PXae">
-    <link rel="icon" type="image/png" sizes="192x192" href="<%= htmlWebpackPlugin.files.publicPath %>static/android-chrome-192x192.png?v=dLmNP8PXae">
-    <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/favicon-16x16.png?v=dLmNP8PXae">
-    <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/safari-pinned-tab.svg?v=dLmNP8PXae" color="#182b7e">
-    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/favicon.ico?v=dLmNP8PXae">
-    <meta name="apple-mobile-web-app-title" content="AutoStudio">
-    <meta name="application-name" content="AutoStudio">
-    <meta name="msapplication-TileColor" content="#182b7e">
-    <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/mstile-144x144.png?v=dLmNP8PXae">
+  <!-- Add to home screen for Windows -->
+  <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/msapplication-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#000000">
 
-    <!-- ios Support for Non-Styled Phone Numbers   -->
-    <meta name="format-detection" content="telephone=no">
-    <!-- / ios Support for Non-Styled Phone Numbers -->
+  <link rel="apple-touch-icon" sizes="180x180" href="<%= htmlWebpackPlugin.files.publicPath %>static/apple-touch-icon.png?v=dLmNP8PXae">
+  <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/favicon-32x32.png?v=dLmNP8PXae">
+  <link rel="icon" type="image/png" sizes="194x194" href="<%= htmlWebpackPlugin.files.publicPath %>static/favicon-194x194.png?v=dLmNP8PXae">
+  <link rel="icon" type="image/png" sizes="192x192" href="<%= htmlWebpackPlugin.files.publicPath %>static/android-chrome-192x192.png?v=dLmNP8PXae">
+  <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/favicon-16x16.png?v=dLmNP8PXae">
+  <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/safari-pinned-tab.svg?v=dLmNP8PXae" color="#182b7e">
+  <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/favicon.ico?v=dLmNP8PXae">
+  <meta name="apple-mobile-web-app-title" content="AutoStudio">
+  <meta name="application-name" content="AutoStudio">
+  <meta name="msapplication-TileColor" content="#182b7e">
+  <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/mstile-144x144.png?v=dLmNP8PXae">
 
-    <!--  Google no translate  -->
-    <meta name="google" content="notranslate" />
-    <!-- / Google no translate -->
+  <!-- ios Support for Non-Styled Phone Numbers   -->
+  <meta name="format-detection" content="telephone=no">
+  <!-- / ios Support for Non-Styled Phone Numbers -->
 
-    <!-- Geo Meta tags // For Bings Search Engine -->
-    <meta name="geo.region" content="CR-SJ" />
-    <meta name="geo.placename" content="San Jos&eacute;" />
-    <meta name="geo.position" content="9.928069;-84.090725" />
-    <meta name="ICBM" content="9.928069, -84.090725" />
-    <!-- / Geo Meta tags // For Bings Search Engine -->
+  <!--  Google no translate  -->
+  <meta name="google" content="notranslate" />
+  <!-- / Google no translate -->
 
-    <!-- SEO Tags  // Keywords,Description,Etc -->
-    <meta name="author" content="www.jlmayorga.com.co">
-    <meta name="keywords" content="camanance, abolladura, reparación de vehiculos, reparación de carros, vehiculos, carro, fiat, mazda, automoviles, automovil, parabrisas, vidrio roto, reparación, mecanica, mecanicos costa rica, san jose, abolladura de carro , arreglar, abolladura auto, taller de reparación de automóviles en Escazú, Costa Rica">
-    <meta name="description" content="AutoStudio es un servicio que en instantes repara pequeñas abolladuras y parabrisas en menos de 3 horas. Estamos ubicados en Escazú, San José, Costa Rica.Somos expertos, somos rapidos, somos AutoStudio. Contactenos al +506 7205 3596. Taller de reparación de automóviles en Escazú, Costa Rica">
-    <meta name="robots" content="index, follow" />
-    <!-- / SEO Tags  // Keywords,Description,Etc -->
+  <!-- Geo Meta tags // For Bings Search Engine -->
+  <meta name="geo.region" content="CR-SJ" />
+  <meta name="geo.placename" content="San Jos&eacute;" />
+  <meta name="geo.position" content="9.928069;-84.090725" />
+  <meta name="ICBM" content="9.928069, -84.090725" />
+  <!-- / Geo Meta tags // For Bings Search Engine -->
 
-    <!-- Vue Webpack Resources/Assets Chuncks -->
-    <% for (var chunk of webpack.chunks) {
+  <!-- SEO Tags  // Keywords,Description,Etc -->
+  <meta name="author" content="www.jlmayorga.com.co">
+  <meta name="keywords" content="camanance, abolladura, reparación de vehiculos, reparación de carros, vehiculos, carro, fiat, mazda, automoviles, automovil, parabrisas, vidrio roto, reparación, mecanica, mecanicos costa rica, san jose, abolladura de carro , arreglar, abolladura auto, taller de reparación de automóviles en Escazú, Costa Rica">
+  <meta name="description" content="AutoStudio es un servicio que en instantes repara pequeñas abolladuras y parabrisas en menos de 3 horas. Estamos ubicados en Escazú, San José, Costa Rica.Somos expertos, somos rapidos, somos AutoStudio. Contactenos al +506 7205 3596. Taller de reparación de automóviles en Escazú, Costa Rica">
+  <meta name="robots" content="index, follow" />
+  <!-- / SEO Tags  // Keywords,Description,Etc -->
+
+  <!-- Vue Webpack Resources/Assets Chuncks -->
+  <% for (var chunk of webpack.chunks) {
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
-    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
-    <!-- / Vue Webpack Resources/Assets Chuncks -->
+    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
+    <% }}} %>
+      <!-- / Vue Webpack Resources/Assets Chuncks -->
 
-    <style>
-    html,body{
-      background-color: #182B7E;
-    }
-    </style>
+      <style>
+        html,
+        body {
+          background-color: #182B7E;
+        }
+      </style>
 
-  </head>
-  <body>
-    <noscript>
-      AutoStudio ! Reparación de Camanances y Parabrisas en San José, Costa Rica.
-      Para visualizar la maravillosa web que hemos preparado para usted, porfavor active/utilize javascript! . Un abrazo.
-    </noscript>
-    <div id="app"></div>
-    <!-- Todo: only include in production -->
-    <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
-    <!-- built files will be auto injected -->
-  </body>
+</head>
+
+<body>
+  <noscript>
+    AutoStudio ! Reparación de Camanances y Parabrisas en San José, Costa Rica. Para visualizar la maravillosa web que hemos
+    preparado para usted, porfavor active/utilize javascript! . Un abrazo.
+  </noscript>
+  <div id="app"></div>
+  <!-- Todo: only include in production -->
+  <!-- <%= htmlWebpackPlugin.options.serviceWorkerLoader %> -->
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
