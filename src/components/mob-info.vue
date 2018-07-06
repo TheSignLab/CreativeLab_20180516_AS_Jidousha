@@ -30,13 +30,15 @@
 
       <v-touch @swiperight="setTab('about')">
             <div class="content contact">
-<div class="img-contanct-cover">
-              <img class="contact-cover" src="../assets/img/mob-info/contact-img.png"  alt="AutoStudio! Con Nosotros">
-              </div><ul class="contact-info">
-              <li> <img src="../assets/img/mob-info/contact-call.png">506 72053596</li>
-              <li>  <img src="../assets/img/mob-info/contact-email.png">info@autostudio-cr.com
- </li>
-              <li>  <img src="../assets/img/mob-info/contact-facebook.png">Autostudio </li>
+
+              <div class="img-contact-cover">
+               <img class="contact-cover" src="../assets/img/mob-info/contact-img.png"  alt="AutoStudio! Con Nosotros">
+              </div>
+
+              <ul class="contact-info">
+                <li> <img src="../assets/img/mob-info/contact-call.png">506 72053596</li>
+                <li> <img src="../assets/img/mob-info/contact-email.png">info@autostudio-cr.com</li>
+                <li> <img src="../assets/img/mob-info/contact-facebook.png">Autostudio </li>
               </ul>
             </div>
       </v-touch>
@@ -79,10 +81,14 @@ export default {
 
 <style lang="less" scoped>
 @import (reference) "../styles/main.less";
+@view-h : @container-h;
+@view-tabs-h : 12vw;
+@content-h : calc(@view-h - @view-tabs-h);
 .tabs {
   display: block;
   width: 100vw;
   height: fit-content;
+  min-height: @view-tabs-h;
   background-color: @color-gray;
 
   .flex-display(flex);
@@ -112,7 +118,7 @@ export default {
 .contents {
   display: block;
   width: 200vw;
-  height: 100vh;
+  height: @content-h;
 
   .flex-display(flex);
   .flex-direction(row);
@@ -129,7 +135,7 @@ export default {
   .content {
     display: inline-block;
     width: 100vw;
-    height: 100vh;
+    height: @view-h;
     overflow: hidden;
   }
 }
@@ -179,13 +185,15 @@ export default {
 }
 .contact {
   background-color: white;
+  height: @view-h;
 }
 ul.contact-info {
+  font-size: 4vw;
   width: 70%;
-  min-height: fit-content;
   margin: 0 auto;
   background-color: #f2f2f2;
-  height: calc(100vh - 150vw);
+  height: calc(@content-h / 2);
+  box-sizing: border-box;
   position: relative;
   top: -0vh;
   padding: 5% 5%;
@@ -193,7 +201,7 @@ ul.contact-info {
   .flex-display(flex);
   .flex-direction(column);
   .flex-wrap(nowrap);
-  .justify-content(center);
+  .justify-content(space-around);
   .align-content(center);
   .align-items(center);
 
@@ -217,13 +225,13 @@ ul.contact-info {
     }
   }
 }
-.img-contanct-cover {
-  width: 100vw;
-  height: auto;
-}
-.contact-cover {
-  display: block;
-  width: 100vw;
-  object-fit: cover;
+.img-contact-cover {
+  height: calc(@content-h / 2);
+  img {
+    display: block;
+    height: 100%;
+    min-width: 100vw;
+    object-fit: cover;
+  }
 }
 </style>

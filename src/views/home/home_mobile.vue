@@ -52,16 +52,6 @@ export default {
 <style lang="less">
 @import (reference) "../../styles/main.less";
 
-@header-h : 7.5vh;
-@header-w : 100vw;
-
-@nav-h : @header-h;
-@nav-w : @header-w;
-
-@container-dh : (@header-h + @nav-h);
-@container-h : calc(100vh - 12vw - 12.5vw);
-@container-w : @header-w;
-
 #mobile-home {
   width: 100vw;
   height: 100vh;

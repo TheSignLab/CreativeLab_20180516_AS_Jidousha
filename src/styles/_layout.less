@@ -1,13 +1,20 @@
 // -------------------------------------------------- //
 // -- Layout Stylesheet LESS for AutoStudio-cr.com -- //
 // -------------------------------------------------- //
-
 // -------------------------------------------------- //
 body,
 html {
-    color: @color-black;
-    background-color: @color-white;
-    width: 100vw !important;
-    height: auto;
-    overflow-x: hidden;
+  color: @color-black;
+  background-color: @color-white;
+  width: 100vw !important;
+  height: auto;
+  overflow-x: hidden;
 }
+
+@header-h : 7.5vh;
+@header-w : 100vw;
+@nav-h : @header-h;
+@nav-w : @header-w;
+@container-dh : (@header-h + @nav-h);
+@container-h : calc(100vh - 12vw - 12.5vw);
+@container-w : @header-w;
