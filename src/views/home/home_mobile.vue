@@ -1,12 +1,24 @@
 <template>
   <div class="device mobile" id="mobile-home">
+
     <div class="header">
       <mob-header></mob-header>
     </div>
+
     <div class="container">
-      <mob-info ></mob-info>
-      <mob-service></mob-service>
+      <div class="wrapper" >
+
+        <div class="section" v-if="this.$store.getters['getNavTab'] == 'info'">
+          <mob-info ></mob-info>
+        </div>
+
+        <div class="section" v-if="this.$store.getters['getNavTab'] == 'service'">
+          <mob-service></mob-service>
+        </div>
+
+      </div>
     </div>
+
     <div class="navigator">
       <mob-navbar></mob-navbar>
     </div>
@@ -14,10 +26,13 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+
 import HeaderComponent from "../../components/mob-header.vue";
 import NavbarComponent from "../../components/mob-navbar.vue";
 import InfoComponent from "../../components/mob-info.vue";
 import ServiceComponent from "../../components/mob-service.vue";
+//console.log(this.$store.getters["getNavTab"]);
 export default {
   name: "vw-home-mobile",
   components: {
@@ -25,6 +40,10 @@ export default {
     "mob-navbar": NavbarComponent,
     "mob-info": InfoComponent,
     "mob-service": ServiceComponent
+  },
+  computed: {
+    ...mapState(["navigation"]),
+    ...mapGetters(["getNavTab"])
   },
   methods: {}
 };
@@ -40,7 +59,7 @@ export default {
 @nav-w : @header-w;
 
 @container-dh : (@header-h + @nav-h);
-@container-h : calc(100vh - (@container-dh));
+@container-h : calc(100vh - 12vw - 12.5vw);
 @container-w : @header-w;
 
 #mobile-home {
@@ -56,12 +75,21 @@ export default {
 }
 .container {
   height: @container-h;
-  height: 100vh;
   width: @header-w;
   overflow: hidden;
+  .wrapper {
+    height: @container-h;
+    height: 200vh;
+    width: @header-w;
+    .section {
+      width: @header-w;
+      height: 100vh;
+      display: block;
+    }
+  }
 }
 .navigator {
-  height: @nav-h;
+  height: fit-content;
   width: @nav-w;
   position: fixed;
   bottom: 0px;

@@ -1,23 +1,16 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+import VuexActions from "./actions";
+import VuexGetters from "./getters";
+import VuexMutations from "./mutations";
+import VuexModel from "./model";
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    mobActiveTab : ''
-  },
-  getters:{
-    currentMobTab: state => state.mobActiveTab
-  },
-  mutations: {
-    UPDATE_NAVTAB(state, tabName){
-      state.mobActiveTab = tabName
-    }
-  },
-  actions: {
-    update_navTab({commit}, tabName){
-      commit('UPDATE_NAVTAB', tabName)
-    }
-  }
-})
+  state: VuexModel,
+  actions: VuexActions,
+  getters: VuexGetters,
+  mutations: VuexMutations
+});

@@ -4,13 +4,13 @@
      <img class="icon" src="../assets/img/navbar/profile.png" alt="">
   </div>
   <div class="tabs">
-    <div class="tab info" @click="updateTab('info')" v-bind:class="{ active: $store.state.mobActiveTab=='info'}">
-      <img src="../assets/img/navbar/tab-info-icon-active.png" v-if="$store.state.mobActiveTab=='info'">
-      <img src="../assets/img/navbar/tab-info-icon-default.png" v-if="$store.state.mobActiveTab!='info'">
+    <div class="tab info" @click="updateTab('info')" v-bind:class="{ active: $store.state.navigation.navbar.currentTab =='info'}">
+      <img src="../assets/img/navbar/tab-info-icon-active.png" v-if="$store.state.navigation.navbar.currentTab =='info'">
+      <img src="../assets/img/navbar/tab-info-icon-default.png" v-if="$store.state.navigation.navbar.currentTab!='info'">
     </div>
-    <div class="tab service" @click="updateTab('service')" v-bind:class="{ active: $store.state.mobActiveTab=='service' }">
-       <img src="../assets/img/navbar/tab-service-icon-active.png" v-if="$store.state.mobActiveTab=='service'">
-      <img src="../assets/img/navbar/tab-service-icon-default.png" v-if="$store.state.mobActiveTab!='service'">
+    <div class="tab service" @click="updateTab('service')" v-bind:class="{ active: $store.state.navigation.navbar.currentTab=='service' }">
+       <img src="../assets/img/navbar/tab-service-icon-active.png" v-if="$store.state.navigation.navbar.currentTab=='service'">
+      <img src="../assets/img/navbar/tab-service-icon-default.png" v-if="$store.state.navigation.navbar.currentTab!='service'">
     </div>
   </div>
 </div>
@@ -45,11 +45,11 @@ export default {
 .tabs {
   position: absolute;
   bottom: 0px;
-  height: 17.5vw;
+  height: 12.5vw;
 }
 .profile-icon {
-  height: 35vw;
-  left: calc(50% - 10vw);
+  height: 25vw;
+  left: calc(50% - 6.5vw);
   z-index: 10;
   img {
     height: 100%;
@@ -86,7 +86,7 @@ export default {
     img {
       display: block;
       margin: 0 auto;
-      height: 50%;
+      height: 65%;
     }
   }
 }

@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+
 export default {
   name: "mob-info",
   data() {
@@ -54,6 +56,10 @@ export default {
       tabPosX: "0vw",
       tabName: "about"
     };
+  },
+  computed: {
+    ...mapState(["navigation"]),
+    ...mapGetters(["getNavTab"])
   },
   methods: {
     setTab(currentTab) {
@@ -213,7 +219,7 @@ ul.contact-info {
 }
 .img-contanct-cover {
   width: 100vw;
-  height: 40vh;
+  height: auto;
 }
 .contact-cover {
   display: block;
