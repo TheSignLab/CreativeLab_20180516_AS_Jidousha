@@ -40,6 +40,8 @@ export default {
 .wrapper {
   height: 100%;
   width: 100%;
+  position: absolute;
+  bottom: 0px;
 }
 .profile-icon,
 .tabs {

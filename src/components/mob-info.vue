@@ -88,7 +88,7 @@ export default {
   display: block;
   width: 100vw;
   height: fit-content;
-  min-height: @view-tabs-h;
+
   background-color: @color-gray;
 
   .flex-display(flex);
@@ -189,7 +189,7 @@ export default {
 }
 ul.contact-info {
   font-size: 4vw;
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
   background-color: #f2f2f2;
   height: calc(@content-h / 2);
@@ -201,12 +201,12 @@ ul.contact-info {
   .flex-display(flex);
   .flex-direction(column);
   .flex-wrap(nowrap);
-  .justify-content(space-around);
+  .justify-content(flex-start);
   .align-content(center);
   .align-items(center);
 
   li {
-    margin: 5%;
+    margin: 1em;
     padding: 0%;
     width: 100%;
     border-bottom: 1px solid @color-gray;
