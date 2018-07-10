@@ -81,7 +81,7 @@ export default {
 .navigator {
   height: fit-content;
   width: @nav-w;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
 }
 </style>
