@@ -20,7 +20,7 @@ export default {
       ext: ".png",
       icons: [
         {
-          text: "Servicio",
+          text: "Servicios",
           state: "active",
           imgSrc: "type"
         }
