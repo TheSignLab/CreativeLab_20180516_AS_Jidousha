@@ -8,7 +8,34 @@
       </div>
 
     </div>
-    <div class="content"></div>
+    <div class="content">
+
+      <div class="step types" v-if="step == 0">
+        <h2>Selecciona Tipo de Servicio</h2>
+        <button @click="step=1"></button>
+      </div>
+      <div class="step time" v-if="step == 1">
+        <h2>Selecciona Hora y Lugar</h2>
+        <button @click="step=2"></button>
+      </div>
+      <div class="step payment" v-if="step == 2">
+        <h2>Selecciona Pago</h2>
+          <button @click="step=3"></button>
+      </div>
+      <div class="step employee" v-if="step == 3">
+        <h2>Pronto Juanito va a venir</h2>
+        <button @click="step=4"></button>
+      </div>
+      <div class="step review" v-if="step == 4">
+        <h2>Como te parecio Juanito?</h2>
+        <button @click="step=5"></button>
+      </div>
+      <div class="step thanks" v-if="step == 5">
+        <h2>Gracias por confiar en nosotros!</h2>
+        <button @click="step=0"></button>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -17,6 +44,7 @@ export default {
   name: "mob-service",
   data() {
     return {
+      step: 0,
       path: "static/img/mob-service/icons/",
       ext: ".png",
       icons: [
