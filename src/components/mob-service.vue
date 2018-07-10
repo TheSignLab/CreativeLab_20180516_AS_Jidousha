@@ -3,7 +3,8 @@
     <div class="header">
 
       <div class="icon" v-for="icon in icons">
-        <img v-bind:src="require(path+icon.imgSrc+'-'+icon.state+ext)" v-bind:alt="icon.text">        <h2>Servicio</h2>
+        <img v-bind:src="require(path+icon.imgSrc+'-'+icon.state+ext)" v-bind:alt="icon.text">
+        <h2>{{icon.text}}</h2>
       </div>
 
     </div>
