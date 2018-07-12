@@ -25,23 +25,23 @@
       </div>
       <div class="step time" v-if="this.$store.getters['getStep'] == 1">
         <h2>Selecciona Hora y Lugar</h2>
-        <button @click="setStep(2,'parabrisas')"></button>
+        <button @click="setStep(2,'parabrisas')">Siguiente</button>
       </div>
       <div class="step payment" v-if="this.$store.getters['getStep'] == 2">
         <h2>Selecciona Pago</h2>
-          <button @click="setStep(3)"></button>
+          <button @click="setStep(3)">Siguiente</button>
       </div>
       <div class="step employee" v-if="this.$store.getters['getStep'] == 3">
         <h2>Pronto Juanito va a venir</h2>
-        <button @click="setStep(4)"></button>
+        <button @click="setStep(4)">Siguiente</button>
       </div>
       <div class="step review" v-if="this.$store.getters['getStep'] == 4">
         <h2>Como te parecio Juanito?</h2>
-        <button @click="setStep(5)"></button>
+        <button @click="setStep(5)">Calificar</button>
       </div>
       <div class="step thanks" v-if="this.$store.getters['getStep'] == 5">
         <h2>Gracias por confiar en nosotros!</h2>
-        <button @click="setStep(0)"></button>
+        <button @click="setStep(0)"> Volver </button>
       </div>
 
     </div>
