@@ -6,7 +6,7 @@ const VuexMutations = {
     state.navigation.service.step = stepNumber;
   },
   UPDATE_SERVICE_TYPE(state, stepType) {
-    state.navigation.service.step = stepType;
+    state.navigation.service.type = stepType;
   },
   UPDATE_SERVICE_HOUR(state, stepHour) {
     state.navigation.service.hour = stepHour;

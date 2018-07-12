@@ -4,7 +4,12 @@ const VuexModel = {
       currentTab: "info"
     },
     service: {
-      step: 0
+      step: "step-type",
+      type: "camanance",
+      hour: null,
+      place: null,
+      payment: null,
+      adviser: null
     }
   }
 };

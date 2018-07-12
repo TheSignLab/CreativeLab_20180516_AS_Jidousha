@@ -1,52 +1,87 @@
 <template>
   <div class="wrapper">
+    <!-- Header : Menu de iconos de servicios -->
     <div class="header">
-
       <div class="icon" v-for="icon in icons">
         <img :src="icon.imgSrc" v-bind:alt="icon.text">
         <h2>{{icon.text}}</h2>
       </div>
-
     </div>
+    <!-- /Header : Menu de iconos de servicios -->
     <div class="content">
 
-      <div class="step types" v-if="this.$store.getters['getStep'] == 0">
-
+      <!--   Paso [0] : Seleccionar Tipo de Servicio   -->
+      <div class="step types" v-if="getStep() == 'step-type'">
         <h2 class="title">¿Qué servicio necesitas?</h2>
         <div class="card">
-          <img src="../assets/img/mob-service/service/camanance.png" class="" alt="Camamances">
-          <button @click="setStep(1,'camanance');">Reparación<br>de Camanances</button>
+          <img src="../assets/img/mob-service/service/camanance.png" alt="Camamances">
+          <button @click="setStep('step-type-confirm','camanance');">
+            Reparación<br>de Camanances
+            </button>
         </div>
         <div class="card">
-          <img src="../assets/img/mob-service/service/parabrisas.png" class="" alt="Parabrisas">
-          <button @click="setStep(1,'parabrisas');">Reparación<br>de Parabrisas</button>
+          <img src="../assets/img/mob-service/service/parabrisas.png" alt="Parabrisas">
+          <button @click="setStep('step-type-confirm','parabrisas');">
+            Reparación<br>de Parabrisas
+            </button>
+        </div>
+      </div>
+
+      <!--  Paso [1] : Confirmar Tipo de Servicio   -->
+      <div class="step type-confirm" v-if="getStep() == 'step-type-confirm'">
+
+        <div class="step-tabs header">
+          <div class="step-tabs tab camanaces" @click="setTypeOfService('camanance')" v-bind:class="{ 'active': getTypeOfService() == 'camanance' }">CAMAMANCES</div>
+          <div class="step-tabs tab parabrisas" @click="setTypeOfService('parabrisas')" v-bind:class="{ 'active': getTypeOfService() == 'parabrisas' }">PARABRISAS</div>
         </div>
 
-      </div>
-      <div class="step time" v-if="this.$store.getters['getStep'] == 1">
-        <h2>Selecciona Hora y Lugar</h2>
-        <button @click="setStep(2,'parabrisas')">Siguiente</button>
-      </div>
-      <div class="step payment" v-if="this.$store.getters['getStep'] == 2">
-        <h2>Selecciona Pago</h2>
-          <button @click="setStep(3)">Siguiente</button>
-      </div>
-      <div class="step employee" v-if="this.$store.getters['getStep'] == 3">
-        <h2>Pronto Juanito va a venir</h2>
-        <button @click="setStep(4)">Siguiente</button>
-      </div>
-      <div class="step review" v-if="this.$store.getters['getStep'] == 4">
-        <h2>Como te parecio Juanito?</h2>
-        <button @click="setStep(5)">Calificar</button>
-      </div>
-      <div class="step thanks" v-if="this.$store.getters['getStep'] == 5">
-        <h2>Gracias por confiar en nosotros!</h2>
-        <button @click="setStep(0)"> Volver </button>
+        <div class="step-tabs content">
+
+          <div class="step-tab camanance" v-if="getTypeOfService() == 'camanance'">
+          <h2 class="title">Reparación de Camanances</h2>
+          <h3 class="subtitle">Condiciones del servicio</h3>
+          <img class="logo" src="../assets/img/mob-service/service/camanance.png">
+          <ul class="list">
+            <li class="head">Golpes que : </li>
+            <li class="item">Son menores a 10 cm de diámetro.</li>
+            <li class="item">No afectaron la pintura del vehículo (no la reventaron).</li>
+            <li class="item">Afectaron la parte metálica del vehiculo.*</li>
+            <span>*Con excepción de aluminio o hierro (parachoques de Pick up).</span>
+          </ul>
+          </div>
+
+          <div class="step-tab parabrisas" v-if="getTypeOfService() == 'parabrisas'">
+          <h2 class="title">Reparación de Parabrisas</h2>
+          <h3 class="subtitle">Condiciones del servicio</h3>
+          </div>
+
+        </div>
+        <div class="button-group">
+        <button @click="setStep('step-type');">ATRAS</button>
+        <button @click="setStep('step-time');">SIGUENTE</button>
+        </div>
+        <span class="disclaimer">Al continuar confirma aceptar los terminos y condiciones del servicio</span>
       </div>
 
+      <!--  Paso [2] : Seleccionar Hora del Servicio   -->
+      <div class="step types" v-if="getStep() == 'step-time'">
+        <h2 class="title">Seleccionar Hora y Dia del servicio</h2>
+        <button @click="setStep('step-type-confirm');">ATRAS</button>
+        <button @click="setStep('step-place');">SIGUENTE</button>
+      </div>
     </div>
   </div>
 </template>
+
+
+
+
+
+
+
+
+
+
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
@@ -87,7 +122,7 @@ export default {
       self.$store.dispatch("update_serviceStep", step);
 
       if (opt === "camanance" || opt === "parabrisa") {
-        self.$store.dispatch("update_serviceType", step);
+        self.$store.dispatch("update_serviceType", opt);
       }
       if (opt === "hora") {
         self.$store.dispatch("update_serviceHour", opt);
@@ -102,14 +137,35 @@ export default {
         self.$store.dispatch("update_serviceAdviser", opt);
       }
     },
-    getStep: function() {}
+    getStep: function() {
+      return this.$store.getters["getStep"];
+    },
+    getTypeOfService: function() {
+      return this.$store.getters["getTypeOfService"];
+    },
+    setTypeOfService: function(serviceType) {
+      this.$store.dispatch("update_serviceType", serviceType);
+    }
   }
 };
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style lang="less" scoped>
 @import (reference) "../styles/main.less";
-
 .header {
   height: 25vw;
   width: 100vw;
@@ -151,7 +207,7 @@ export default {
   .align-content(center);
   .align-items(center);
 
-  h2.title {
+  .title {
     display: block;
     text-align: center;
     width: fit-content;
@@ -161,12 +217,24 @@ export default {
     border-radius: 1em;
     font-size: 1em;
     padding: 0.5em 1em;
+    margin: 1em auto;
+  }
+  .subtitle {
+    display: block;
+    text-align: center;
+    width: fit-content;
+    background-color: @color-white;
+    color: @color-dark-gray;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 0.5em;
+    font-size: 0.75em;
+    padding: 0.25em 0.5em;
     margin: 0em auto;
   }
 }
 .step {
   box-sizing: border-box;
-  padding: 1em;
+  padding: 0em;
 }
 button {
   background-color: #fd0544;
@@ -176,9 +244,10 @@ button {
   min-width: -moz-fit-content;
   min-width: fit-content;
   border: none;
-  border: 0.25em solid #fd0544;
-  border-radius: 2em;
-  padding: 0.5em 1em;
+  border: 0.5em solid #fd0544;
+  border-radius: 1.5em;
+  font-size: 0.75em;
+  padding: 0.25em 0.5em;
 }
 .card {
   img {
@@ -189,6 +258,58 @@ button {
   button {
     display: block;
     margin: 0 auto;
+  }
+}
+.button-group {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+.disclaimer {
+  display: block;
+  font-family: "font-light";
+  color: #363636;
+  font-size: 0.85em;
+  width: 70%;
+  margin: 1.5em auto;
+  text-align: center;
+}
+
+.step-tabs.header {
+  background-color: @color-white;
+  width: 100%;
+  height: auto;
+  .tab {
+    font-family: "font-bold";
+    padding: 0.5em 1em;
+    border: none;
+    border-bottom: 0.15em solid @color-dark-gray;
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    &.active {
+      border-bottom: 0.15em solid @color-red;
+    }
+  }
+}
+.step-tabs.content {
+  width: 85%;
+  display: block;
+  margin: 0 auto;
+  padding: 0.5em;
+  box-sizing: border-box;
+  .title {
+    margin: 0.25em auto;
+    padding: 0.25em;
+  }
+  .logo {
+    width: 25%;
+    display: block;
+    margin: 0 auto;
+  }
+  .list {
+    font-family: "font-light";
+    font-size: 0.75em;
   }
 }
 </style>
