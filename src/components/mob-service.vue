@@ -3,7 +3,8 @@
     <!-- Header : Menu de iconos de servicios -->
     <div class="header">
       <div class="icon" v-for="icon in icons">
-        <img :src="icon.imgSrc" v-bind:alt="icon.text">
+        <img :src="icon.imgSrcActive" v-bind:alt="icon.text" v-if="icon.active">
+        <img :src="icon.imgSrcDefault" v-bind:alt="icon.text" v-if="!icon.active">
         <h2>{{icon.text}}</h2>
       </div>
     </div>
@@ -44,9 +45,9 @@
           <ul class="list">
             <li class="head">Golpes que : </li>
             <li class="item">Son menores a 10 cm de diámetro.</li>
-            <li class="item">No afectaron la pintura del vehículo (no la reventaron).</li>
+            <li class="item">No afectaron la pintura del vehículo <br> (no la reventaron).</li>
             <li class="item">Afectaron la parte metálica del vehiculo.*</li>
-            <span>*Con excepción de aluminio o hierro (parachoques de Pick up).</span>
+            <span>*Con excepción de aluminio o hierro<br> (parachoques de Pick up).</span>
           </ul>
           </div>
 
@@ -114,9 +115,7 @@ export default {
     };
   },
   methods: {
-    getIconSrc: function(icon) {
-      return this.path + icon.imgSrc + "-" + icon.state + this.ext;
-    },
+    setIcon(iconNumber) {},
     setStep: function(step, opt) {
       var self = this;
       self.$store.dispatch("update_serviceStep", step);
@@ -310,6 +309,15 @@ button {
   .list {
     font-family: "font-light";
     font-size: 0.75em;
+    li {
+      margin: 0.5em 0em;
+      &.head {
+        margin: 0.85em 0em;
+      }
+      &.item:before {
+        content: "\2713 ";
+      }
+    }
   }
 }
 </style>
