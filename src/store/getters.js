@@ -3,6 +3,9 @@ const VuexGetters = {
   getNavTab(state, getters) {
     return state.navigation.navbar.currentTab;
   },
+  getStep(state, getters) {
+    return state.navigation.service.step;
+  },
   getNavigation: state => state.navigation.navbar.currentTab
 };
 
