@@ -6,9 +6,9 @@
 // Flexbox display
 // flex or inline-flex
 .flex-display(@display: flex) {
-  display: ~ "-webkit-@{display}";
-  display: ~ "-ms-@{display}box"; // IE10 uses -ms-flexbox
-  display: ~ "-ms-@{display}"; // IE11
+  display: ~"-webkit-@{display}";
+  display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+  display: ~"-ms-@{display}"; // IE11
   display: @display;
 }
 
@@ -121,18 +121,17 @@
   align-self: @align;
 }
 
-
 // Animation Mixins
 .keyframes(@name;
 @arguments) {
   @-moz-keyframes @name {
-      @arguments();
+    @arguments();
   }
   @-webkit-keyframes @name {
-      @arguments();
+    @arguments();
   }
   @keyframes @name {
-      @arguments();
+    @arguments();
   }
 }
 
@@ -156,13 +155,40 @@
   transition-timing-function: @arguments;
 }
 
-
-
-
 .flex-centerAll() {
   .flex-display(flex);
   .flex-direction(column);
   .flex-wrap(wrap);
+  .justify-content(center);
+  .align-content(center);
+  .align-items(center);
+}
+
+.displayRowCenter() {
+  .flex-display(flex);
+  .flex-direction(row);
+  .flex-wrap(nowrap);
+  .justify-content(center);
+  .align-content(center);
+  .align-items(center);
+}
+
+.displayRowExpand() {
+  width: 100%;
+  height: fit-content;
+  padding: 0.5em 0em;
+  .flex-display(flex);
+  .flex-direction(row);
+  .flex-wrap(nowrap);
+  .justify-content(space-around);
+  .align-content(center);
+  .align-items(center);
+}
+
+.displayColumnCenter() {
+  .flex-display(flex);
+  .flex-direction(column);
+  .flex-wrap(nowrap);
   .justify-content(center);
   .align-content(center);
   .align-items(center);

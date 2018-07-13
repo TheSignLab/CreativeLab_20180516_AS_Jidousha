@@ -69,11 +69,11 @@ export default {
   overflow: hidden;
   .wrapper {
     height: @container-h;
-    height: 200vh;
+    height: calc(100vh - 12vw - 12.5vw);
     width: @header-w;
     .section {
       width: @header-w;
-      height: 100vh;
+      height: calc(100vh - 12vw - 12.5vw);
       display: block;
     }
   }

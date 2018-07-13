@@ -8,7 +8,7 @@
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "mob-service-step-type",
+  name: "mob-service-step-terms",
   data() {
     return {};
   },
@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import (reference) "../styles/main.less";
+@import (reference) "../../styles/main.less";
 </style>
