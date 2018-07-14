@@ -11,8 +11,10 @@
         <button class="button">REPARACIÓN DE <br> PARABRISAS</button>
       </li>
     </ul>
+
   </div>
 </template>
+
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
